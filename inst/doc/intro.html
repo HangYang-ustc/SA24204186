@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="阳航" />
+
+<meta name="date" content="2024-12-08" />
+
+<title>introduction to conformal prediction</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">introduction to conformal prediction</h1>
+<h4 class="author">阳航</h4>
+<h4 class="date">2024-12-08</h4>
+
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p><strong>Conformal Prediction（共形推断）</strong>
+是一种强大的统计方法，用于量化机器学习模型预测的可信度。给定一个训练好的模型和一个新的测试数据点，Conformal
+Prediction 计算一个
+p-value（p值），用来衡量该测试数据点与模型的“符合度”。p值越高，说明数据点与模型的契合度越高，模型的预测结果也越可靠。</p>
+<p>在包 <code>SA24204186</code> 中，提供了两个关键的函数来实现
+<strong>Conformal Prediction</strong>： 1.
+<strong><code>conformal_p_value</code></strong>：计算每个测试数据点的
+p-value。 2.
+<strong><code>conformal_prediction_set</code></strong>：根据给定的
+p-value 阈值生成预测集合。</p>
+<p>还提供了一个基于 <strong>Rcpp</strong> 的 Conformal Prediction
+实现，在处理大数据集时能够显著提升计算速度。</p>
+<div id="r-代码实现conformal_p_value" class="section level3">
+<h3>R 代码实现：<code>conformal_p_value</code></h3>
+<p><strong>函数简介：</strong></p>
+<p>conformal_p_value 函数根据提供的模型、训练数据和测试数据，计算
+**Conformal Prediction 共形推断 的 p-value。p-value
+衡量了测试数据点与模型的拟合程度，反映了测试数据与训练数据的一致性。
+该函数首先计算 非一致性得分 (nonconformity
+score)，即测试数据点与训练数据预测的差异。</p>
+<p>然后，基于这些非一致性得分来计算每个测试数据点的
+p-value，表示其符合度的程度。</p>
+<p><strong>输入参数：</strong></p>
+<p>model: 训练好的预测模型，可以是任何支持 predict
+函数的模型（例如线性回归、支持向量机等）。</p>
+<p>train_data: 训练数据，数据框或矩阵，用于训练模型。</p>
+<p>test_data: 测试数据，数据框或矩阵，用于计算 p-value。</p>
+<p><strong>输出</strong></p>
+<p>返回一个包含每个测试数据点对应 p-value 的向量。p-value
+反映了每个测试数据点与训练数据之间的拟合程度。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>conformal_p_value <span class="ot">&lt;-</span> <span class="cf">function</span>(model, train_data, test_data) {</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="co"># 计算非一致性得分</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  nonconformity_scores <span class="ot">&lt;-</span> <span class="fu">apply</span>(test_data, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">abs</span>(<span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">matrix</span>(x, <span class="at">nrow =</span> <span class="dv">1</span>)) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">predict</span>(model, <span class="at">newdata =</span> train_data))))</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  </span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="co"># 基于非一致性得分计算 p-value</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  p_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(nonconformity_scores, <span class="cf">function</span>(score) <span class="fu">mean</span>(score <span class="sc">&gt;=</span> nonconformity_scores))</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="fu">return</span>(p_values)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>该函数使用 <span class="fu">apply</span>() 函数计算每个测试数据点的非一致性得分。</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>然后，通过将每个点的得分与训练集中所有其他点的得分进行比较，计算对应的 p<span class="sc">-</span>value。</span></code></pre></div>
+</div>
+<div id="r-代码实现conformal_prediction_set" class="section level3">
+<h3>R 代码实现：<code>conformal_prediction_set</code></h3>
+<p><strong>函数简介：</strong></p>
+<p>conformal_prediction_set 函数使用 conformal_p_value 函数计算
+p-value，并根据给定的 <strong>p-value 阈值 </strong>生成
+<strong>Conformal Prediction
+集合</strong>。该集合包含预测的新数据点所属的类别或范围。 该函数首先调用
+conformal_p_value 来计算每个测试实例的 p-value。</p>
+<p>然后，根据 p_threshold 来筛选哪些预测结果需要包含在预测集合中。如果
+p-value 大于等于阈值，则将预测结果加入集合；否则，该测试点的预测结果为
+NA，表示不可靠。</p>
+<p><strong>输入参数：</strong></p>
+<p>model: 训练好的预测模型。</p>
+<p>train_data: 用于训练模型的训练数据。</p>
+<p>test_data: 用于生成预测集合的测试数据。</p>
+<p>p_threshold: 一个介于 0 和 1
+之间的数值，用于确定哪些预测应包含在预测集合中。如果 p-value
+高于该阈值，则认为预测可靠，将其包括在预测集合中。</p>
+<p><strong>输出</strong></p>
+<p>返回一个列表，每个元素对应一个测试实例的预测集合。如果 p-value
+太低，则该实例没有预测结果（值为 NA）。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>conformal_prediction_set <span class="ot">&lt;-</span> <span class="cf">function</span>(model, train_data, test_data, p_threshold) {</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  p_values <span class="ot">&lt;-</span> <span class="fu">conformal_p_value</span>(model, train_data, test_data)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  </span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="co"># 根据 p-value 阈值筛选预测值</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  prediction_set <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p_values)) {</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="cf">if</span> (p_values[i] <span class="sc">&gt;=</span> p_threshold) {</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>      prediction_set[[i]] <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">matrix</span>(test_data[i,], <span class="at">nrow =</span> <span class="dv">1</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>      prediction_set[[i]] <span class="ot">&lt;-</span> <span class="cn">NA</span>  <span class="co"># 如果 p-value 太低，则不进行预测</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    }</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  }</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>  </span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>  <span class="fu">return</span>(prediction_set)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>}</span></code></pre></div>
+<p>首先计算每个测试数据点的 p-value，然后根据指定的 p_threshold
+生成预测集合。 如果 p-value 高于阈值，预测值将包含在集合中，否则返回
+NA。</p>
+</div>
+<div id="summary" class="section level3">
+<h3>summary</h3>
+<p>1.conformal_p_value: 计算测试数据点的
+p-value，衡量它们与训练数据的符合程度。 2、conformal_prediction_set:
+基于 p-value 阈值生成每个测试数据点的预测集合。如果 p-value
+高于设定的阈值，则预测包含在集合中，否则返回 NA。</p>
+<p>这些函数可以用于模型的不确定性评估，尤其在需要判断模型预测可靠性时非常有用。在某些实际应用中，比如金融、医疗等领域，能够知道模型的预测是否可靠是非常重要的，Conformal
+Prediction 就可以提供这种可靠性度量。</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
