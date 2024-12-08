@@ -1,0 +1,15 @@
+## ----sine-plot, echo=TRUE, fig.cap="正弦函数图"------------------------------------
+# 绘制一个简单的正弦函数
+x <- seq(0, 2*pi, length.out = 100)
+y <- sin(x)
+plot(x, y, type = "l", col = "blue", lwd = 2, main = "正弦函数")
+# 创建一个随机数的数据框
+set.seed(123)
+df <- data.frame(
+  "样本" = 1:5,
+  "值_A" = round(rnorm(5, mean = 10, sd = 2), 2),
+  "值_B" = round(rnorm(5, mean = 20, sd = 3), 2)
+)
+knitr::kable(df, caption = "随机值表")
+
+

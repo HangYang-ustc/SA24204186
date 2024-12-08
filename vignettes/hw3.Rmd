@@ -1,0 +1,90 @@
+---
+title: "hw3"
+author: "阳航"
+date: "2024-12-08"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to R-package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r setup_global, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+练习 6.6
+在特定模拟环境下进行10,000次实验，比较两种方法的power值：一种为0.651，另一种为0.676。
+假设检验选择：Z检验。
+```{r}
+#在特定模拟环境下比较两种方法的power值。
+
+#Step 1: 定义已知的power值和样本数
+p1 <- 0.651  # 方法1的power值
+p2 <- 0.676  # 方法2的power值
+n <- 10000   # 实验次数
+#Step 2: Z检验计算
+# 计算Z统计量
+z_stat <- (p2 - p1) / sqrt((p1 * (1 - p1) + p2 * (1 - p2)) / n)
+
+# 计算p值
+p_value <- 2 * (1 - pnorm(abs(z_stat)))
+
+# 打印Z统计量和p值
+cat("Z统计量:", z_stat, "\n")
+cat("p值:", p_value, "\n")
+#Step 3: 判断结果
+# 判断是否拒绝原假设
+if (p_value < 0.05) {
+  cat("拒绝原假设：两种方法的power有显著差异。\n")
+} else {
+  cat("未能拒绝原假设：两种方法的power没有显著差异。\n")
+}
+
+```
+练习 6.B
+探讨在练习6.6中的假设检验问题，选择合适的检验方法并解释理由
+
+```{r}
+cat("我们选择Z检验，因为这是适用于大样本独立比例比较的最佳选择。\n")
+
+```
+
+
+模拟实验
+```{r}
+
+#Step 1: 模拟实验设置
+set.seed(123)
+n <- 10000  # 实验次数
+p1 <- 0.651  # 方法1的power值
+p2 <- 0.676  # 方法2的power值
+
+# 生成模拟数据
+data1 <- rbinom(n, 1, p1)  # 方法1的结果
+data2 <- rbinom(n, 1, p2)  # 方法2的结果
+#Step 2: Z检验计算
+# 计算模拟数据中的平均值
+mean1 <- mean(data1)
+mean2 <- mean(data2)
+
+# 计算Z统计量
+z_stat_sim <- (mean2 - mean1) / sqrt((mean1 * (1 - mean1) + mean2 * (1 - mean2)) / n)
+
+# 计算p值
+p_value_sim <- 2 * (1 - pnorm(abs(z_stat_sim)))
+
+# 打印模拟结果的Z统计量和p值
+cat("模拟实验Z统计量:", z_stat_sim, "\n")
+cat("模拟实验p值:", p_value_sim, "\n")
+
+#Step 3: 验证结果
+# 判断模拟实验的结果是否与假设检验一致
+if (p_value_sim < 0.05) {
+  cat("通过模拟实验验证，两种方法的power存在显著差异。\n")
+} else {
+  cat("通过模拟实验验证，两种方法的power没有显著差异。\n")
+}
+
+```
+
+

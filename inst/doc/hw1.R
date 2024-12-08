@@ -1,0 +1,37 @@
+## -----------------------------------------------------------------------------
+#练习 3.4: 变换方法 (Transformation Methods)
+# 正态分布随机变量生成
+n <- 1000
+u <- runif(n)
+x <- qnorm(u, mean = 0, sd = 1)  # 生成标准正态分布的随机变量
+hist(x, main = "标准正态分布的随机数", xlab = "x", breaks = 30)
+#练习 3.11: 复合泊松过程 (Compound Poisson Process)
+# 设置泊松过程和Gamma分布的参数
+lambda <- 5  # 泊松过程的参数
+n <- 1000    # 模拟次数
+alpha <- 2   # Gamma分布的形状参数
+beta <- 1    # Gamma分布的尺度参数
+
+# 模拟复合泊松过程
+compound_poisson <- function(lambda, alpha, beta, n) {
+  result <- numeric(n)
+  for (i in 1:n) {
+    k <- rpois(1, lambda)
+    if (k > 0) {
+      result[i] <- sum(rgamma(k, alpha, beta))
+    }
+  }
+  return(result)
+}
+
+# 生成数据并绘制直方图
+sim_data <- compound_poisson(lambda, alpha, beta, n)
+hist(sim_data, main = "复合泊松-伽玛过程模拟", xlab = "值", breaks = 30)
+# 计算复合泊松-伽玛过程的均值和方差
+mean_sim <- mean(sim_data)
+var_sim <- var(sim_data)
+
+# 打印结果
+cat("复合泊松-伽玛过程的均值: ", mean_sim, "\n")
+cat("复合泊松-伽玛过程的方差: ", var_sim, "\n")
+

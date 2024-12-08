@@ -1,0 +1,22 @@
+Package: SA24204186
+Type: Package
+Title: conformal prediction
+Version: 1.0
+Date: 2024-12-08
+Author: Hang Yang
+Maintainer: Hang Yang <2833926215@qq.com>
+Description: A homework package for conformal prediction, providing methods for 
+             generating prediction intervals and p-value calculations using 
+             R and Rcpp functions.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.13)
+LinkingTo: Rcpp
+RoxygenNote: 7.3.2
+Encoding: UTF-8
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+URL: http://github.com/HangYang-ustc/SA24204186
+BugReports: http://github.com/HangYang-ustc/SA24204186/issues
+
+
+

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="阳航" />
+
+<meta name="date" content="2024-12-08" />
+
+<title>hw6</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">hw6</h1>
+<h4 class="author">阳航</h4>
+<h4 class="date">2024-12-08</h4>
+
+
+
+<p>练习 9.3：使用 Metropolis-Hastings 采样器生成标准 Cauchy
+分布的样本</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># 加载必要的包</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span>       <span class="co"># Beta 分布的参数 a</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span>       <span class="co"># Beta 分布的参数 b</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>      <span class="co"># 最大可能的 x 值</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>n_samples <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># 每条链的样本数</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Gibbs 采样函数</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>gibbs_sampler <span class="ot">&lt;-</span> <span class="cf">function</span>(n_samples, n, a, b) {</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  x_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  y_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="co"># 初始化值</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  x_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.5</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  y_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[<span class="dv">1</span>] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[<span class="dv">1</span>] <span class="sc">+</span> b)</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  </span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n_samples) {</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    <span class="co"># 使用条件分布从 x | y 采样</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>    x_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y_samples[i <span class="sc">-</span> <span class="dv">1</span>])</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>    <span class="co"># 使用条件分布从 y | x 采样</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>    y_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[i] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[i] <span class="sc">+</span> b)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  }</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  </span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">x =</span> x_samples, <span class="at">y =</span> y_samples))</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>}</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co"># 生成两条独立的链</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>chain1 <span class="ot">&lt;-</span> <span class="fu">gibbs_sampler</span>(n_samples, n, a, b)</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>chain2 <span class="ot">&lt;-</span> <span class="fu">gibbs_sampler</span>(n_samples, n, a, b)</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="co"># 将链转化为 mcmc 对象</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>x_chain1 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain1<span class="sc">$</span>x)</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>y_chain1 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain1<span class="sc">$</span>y)</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>x_chain2 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain2<span class="sc">$</span>x)</span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a>y_chain2 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain2<span class="sc">$</span>y)</span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="co"># 结合链并执行 Gelman-Rubin 收敛监测</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>chains_x <span class="ot">&lt;-</span> <span class="fu">mcmc.list</span>(x_chain1, x_chain2)</span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>chains_y <span class="ot">&lt;-</span> <span class="fu">mcmc.list</span>(y_chain1, y_chain2)</span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>gelman_diag_x <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(chains_x)</span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>gelman_diag_y <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(chains_y)</span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="co"># 输出 Gelman-Rubin 诊断结果</span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;x 链的 Gelman-Rubin 诊断结果：&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;x 链的 Gelman-Rubin 诊断结果：&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">print</span>(gelman_diag_x)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]          1       1.01</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;y 链的 Gelman-Rubin 诊断结果：&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;y 链的 Gelman-Rubin 诊断结果：&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">print</span>(gelman_diag_y)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]          1       1.01</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># 检查收敛性</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">all</span>(gelman_diag_x<span class="sc">$</span>psrf <span class="sc">&lt;</span> <span class="fl">1.2</span>) <span class="sc">&amp;&amp;</span> <span class="fu">all</span>(gelman_diag_y<span class="sc">$</span>psrf <span class="sc">&lt;</span> <span class="fl">1.2</span>)) {</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;链已收敛</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;链未完全收敛，请增加样本数</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## 链已收敛</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># 可视化生成的样本</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">plot</span>(chain1<span class="sc">$</span>x, chain1<span class="sc">$</span>y, <span class="at">main =</span> <span class="st">&quot;Gibbs Sampler Chain 1&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">plot</span>(chain2<span class="sc">$</span>x, chain2<span class="sc">$</span>y, <span class="at">main =</span> <span class="st">&quot;Gibbs Sampler Chain 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- -->
+练习 9.8：使用 Gibbs 采样器生成双变量密度的样本</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># 定义参数</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>n_samples <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co"># Gibbs 采样函数</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>gibbs_sampler <span class="ot">&lt;-</span> <span class="cf">function</span>(n_samples, n, a, b) {</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>  x_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>  y_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>  </span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>  <span class="co"># 初始化值</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>  x_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.5</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>  y_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[<span class="dv">1</span>] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[<span class="dv">1</span>] <span class="sc">+</span> b)</span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>  </span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n_samples) {</span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a>    x_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y_samples[i <span class="sc">-</span> <span class="dv">1</span>])</span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a>    y_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[i] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[i] <span class="sc">+</span> b)</span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a>  }</span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a>  </span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">x =</span> x_samples, <span class="at">y =</span> y_samples))</span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a>}</span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co"># 生成样本</span></span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">gibbs_sampler</span>(n_samples, n, a, b)</span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a><span class="co"># Gelman-Rubin 收敛监控</span></span>
+<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a>x_chain <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(samples<span class="sc">$</span>x)</span>
+<span id="cb12-29"><a href="#cb12-29" tabindex="-1"></a>y_chain <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(samples<span class="sc">$</span>y)</span>
+<span id="cb12-30"><a href="#cb12-30" tabindex="-1"></a>chains <span class="ot">&lt;-</span> <span class="fu">mcmc.list</span>(x_chain, y_chain)</span>
+<span id="cb12-31"><a href="#cb12-31" tabindex="-1"></a>gelman_diag <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(chains)</span>
+<span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a><span class="fu">print</span>(gelman_diag)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]       3.11       16.9</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># 绘制样本</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">plot</span>(samples<span class="sc">$</span>x, samples<span class="sc">$</span>y, <span class="at">main =</span> <span class="st">&quot;Gibbs Sampler for Bivariate Density&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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lfdigIeB+gak73yso1XQz4GNbQ5RelnFAWnr8bO394t46Rt9Rxh5GKhvQBiAUuoCFtc/RgE9/Tp94VOANuK2vJuX56FT74DKKqTvK8oqxNOlgXgftLn89yrZgyWbmHYrz0OnvgHp2ABNPHFbTTWAOKBCNRIdJlHTiQ64pJLlYaVjANok+mh1yzYB6AJcfRWaT8sY/ikAygjg1G3Z8vQEoNJu/IHfoH+ZQhPDXWCR7EPM5pQIAV2teFcNomMKnTQcRIv4PM4qHkF6f0n86uvKx//VYQLDPJqGxTuISomZtOqivE0mzVNxH3TkiWLZSlKzHN2Ekv6llhobsFBZp9JNaKU9DMTFKhABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQFNHZDaCfaywnuKBtPUAandUuln8QysqQNSW6P/kL3baQBNHtBunfxhx+CaPqD4xvlRNHlA2/s/5u7YHUSTB1Rc/5LY1Tq8pg5I7YzO3hU/hKYOaF1ujD5iNz11QEcXAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEB/R/Ez8kRilktoQAAAABJRU5ErkJggg==" /><!-- --></p>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
