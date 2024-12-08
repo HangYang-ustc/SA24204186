@@ -1,0 +1,107 @@
+---
+title: "hw9"
+author: "阳航"
+date: "2024-11-24"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to R-package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+# ex9.8
+```{r}
+#Rcpp和R函数实现Gibbs采样
+# 加载Rcpp库
+library(Rcpp)
+
+# 编写Rcpp函数
+cppFunction('
+NumericMatrix gibbsRcpp(int iterations, int n, double a, double b) {
+  NumericMatrix samples(iterations, 2);
+  samples(0, 0) = 0;  // 初始化 x
+  samples(0, 1) = 0.5; // 初始化 y
+  
+  for (int i = 1; i < iterations; i++) {
+    // 获取上一轮的值
+    double y_prev = samples(i - 1, 1);
+    int x_prev = samples(i - 1, 0);
+    
+    // 更新x: Binomial(n, y_prev)
+    samples(i, 0) = R::rbinom(n, y_prev);
+    
+    // 更新y: Beta(x_prev + a, n - x_prev + b)
+    samples(i, 1) = R::rbeta(x_prev + a, n - x_prev + b);
+  }
+  
+  return samples;
+}
+')
+
+# Gibbs采样
+gibbsR <- function(iterations, n, a, b) {
+  x <- numeric(iterations)
+  y <- numeric(iterations)
+  x[1] <- 0
+  y[1] <- 0.5
+  
+  for (i in 2:iterations) {
+    y_prev <- y[i - 1]
+    x[i] <- rbinom(1, size = n, prob = y_prev)
+    x_prev <- x[i]
+    y[i] <- rbeta(1, shape1 = x_prev + a, shape2 = n - x_prev + b)
+  }
+  
+  cbind(x, y)
+}
+
+```
+# 比较生成的随机数
+```{r}
+# 参数设置
+iterations <- 10000
+n <- 10
+a <- 2
+b <- 3
+
+# 运行Rcpp和R函数
+set.seed(123)
+samples_rcpp <- gibbsRcpp(iterations, n, a, b)
+
+set.seed(123)
+samples_r <- gibbsR(iterations, n, a, b)
+
+#使用qqplot比较结果
+# 比较x分量
+qqplot(samples_r[, 1], samples_rcpp[, 1], main = "QQ-Plot for x", xlab = "R", ylab = "Rcpp")
+abline(0, 1, col = "red")
+
+# 比较y分量
+qqplot(samples_r[, 2], samples_rcpp[, 2], main = "QQ-Plot for y", xlab = "R", ylab = "Rcpp")
+abline(0, 1, col = "red")
+
+```
+# 比较计算时间
+```{r}
+library(microbenchmark)
+
+# 比较时间
+timing <- microbenchmark(
+  R = gibbsR(iterations, n, a, b),
+  Rcpp = gibbsRcpp(iterations, n, a, b),
+  times = 10
+)
+print(timing)
+
+```
+
+# comment
+结果对比：
+
+使用qqplot观察到Rcpp和R函数生成的随机数在数值分布上高度一致，验证了Rcpp的正确性。
+时间性能：
+
+根据microbenchmark的结果，Rcpp的计算时间显著低于R函数，说明Rcpp在性能优化上具有明显优势。
+总结：
+
+Rcpp在处理大量迭代时表现出色，适合需要高效计算的场景。
+如果仅处理小规模问题，R函数更为便捷。

@@ -1,0 +1,60 @@
+---
+title: "introduction to conformal prediction"
+author: "阳航"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to StatComp}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Overview
+
+**Conformal Prediction（符合预测）** 是一种强大的统计方法，用于量化机器学习模型预测的可信度。给定一个训练好的模型和一个新的测试数据点，Conformal Prediction 计算一个 p-value（p值），用来衡量该测试数据点与模型的“符合度”。p值越高，说明数据点与模型的契合度越高，模型的预测结果也越可靠。
+
+在本包 `SA24204186` 中，我们提供了两个关键的函数来实现 **Conformal Prediction**：
+1. **`conformal_p_value`**：计算每个测试数据点的 p-value。
+2. **`conformal_prediction_set`**：根据给定的 p-value 阈值生成预测集合。
+
+此外，我们还提供了一个基于 **Rcpp** 的 Conformal Prediction 实现，这在处理大数据集时能够显著提升计算速度。
+
+## `conformal_p_value` 和 `conformal_prediction_set` 的性能基准
+
+函数 `conformal_p_value` 通过计算每个测试数据点与训练数据之间的非一致性得分来计算 p-value。
+
+### R 代码实现：`conformal_p_value`
+
+```{r, eval=FALSE}
+conformal_p_value <- function(model, train_data, test_data) {
+  # 计算非一致性得分
+  nonconformity_scores <- apply(test_data, 1, function(x) abs(predict(model, newdata = matrix(x, nrow = 1)) - mean(predict(model, newdata = train_data))))
+  
+  # 基于非一致性得分计算 p-value
+  p_values <- sapply(nonconformity_scores, function(score) mean(score >= nonconformity_scores))
+  
+  return(p_values)
+}
+该函数使用 apply() 函数计算每个测试数据点的非一致性得分。
+然后，通过将每个点的得分与训练集中所有其他点的得分进行比较，计算对应的 p-value。
+```
+```{r}
+conformal_prediction_set <- function(model, train_data, test_data, p_threshold) {
+  p_values <- conformal_p_value(model, train_data, test_data)
+  
+  # 根据 p-value 阈值筛选预测值
+  prediction_set <- list()
+  for (i in 1:length(p_values)) {
+    if (p_values[i] >= p_threshold) {
+      prediction_set[[i]] <- predict(model, newdata = matrix(test_data[i,], nrow = 1))
+    } else {
+      prediction_set[[i]] <- NA  # 如果 p-value 太低，则不进行预测
+    }
+  }
+  
+  return(prediction_set)
+}
+
+```
+首先计算每个测试数据点的 p-value，然后根据指定的 p_threshold 生成预测集合。
+如果 p-value 高于阈值，预测值将包含在集合中，否则返回 NA。
+
