@@ -13,3 +13,945 @@ df <- data.frame(
 knitr::kable(df, caption = "随机值表")
 
 
+## -----------------------------------------------------------------------------
+#练习 3.4: 变换方法 (Transformation Methods)
+# 正态分布随机变量生成
+n <- 1000
+u <- runif(n)
+x <- qnorm(u, mean = 0, sd = 1)  # 生成标准正态分布的随机变量
+hist(x, main = "标准正态分布的随机数", xlab = "x", breaks = 30)
+#练习 3.11: 复合泊松过程 (Compound Poisson Process)
+# 设置泊松过程和Gamma分布的参数
+lambda <- 5  # 泊松过程的参数
+n <- 1000    # 模拟次数
+alpha <- 2   # Gamma分布的形状参数
+beta <- 1    # Gamma分布的尺度参数
+
+# 模拟复合泊松过程
+compound_poisson <- function(lambda, alpha, beta, n) {
+  result <- numeric(n)
+  for (i in 1:n) {
+    k <- rpois(1, lambda)
+    if (k > 0) {
+      result[i] <- sum(rgamma(k, alpha, beta))
+    }
+  }
+  return(result)
+}
+
+# 生成数据并绘制直方图
+sim_data <- compound_poisson(lambda, alpha, beta, n)
+hist(sim_data, main = "复合泊松-伽玛过程模拟", xlab = "值", breaks = 30)
+# 计算复合泊松-伽玛过程的均值和方差
+mean_sim <- mean(sim_data)
+var_sim <- var(sim_data)
+
+# 打印结果
+cat("复合泊松-伽玛过程的均值: ", mean_sim, "\n")
+cat("复合泊松-伽玛过程的方差: ", var_sim, "\n")
+
+## ----setup, include=FALSE-----------------------------------------------------
+knitr::opts_chunk$set(echo = TRUE)
+if (!require(microbenchmark)) {
+  install.packages("microbenchmark", repos = "https://cloud.r-project.org/")
+  library(microbenchmark)
+} else {
+  library(microbenchmark)
+}
+
+
+
+## -----------------------------------------------------------------------------
+# Monte Carlo积分的练习，使用对偶变量减少方差。
+# 设定种子以确保可重复性
+set.seed(123)
+
+# 对偶变量方法计算exp(-x^2)的积分
+n <- 10000
+u <- runif(n)
+x <- exp(-u^2)
+y <- exp(-(1-u)^2)
+I_antithetic <- mean((x + y) / 2)
+
+# 直接Monte Carlo方法
+I_standard <- mean(x)
+
+# 打印结果
+cat("对偶变量方法的结果:", I_antithetic, "\n")
+cat("标准Monte Carlo方法的结果:", I_standard, "\n")
+
+
+## -----------------------------------------------------------------------------
+# 使用控制变量减少方差的方法。
+# 使用控制变量计算e^(-x)的积分
+n <- 10000
+u <- runif(n)
+h <- exp(-u)
+g <- u  # 控制变量 g(u) = u
+
+# 计算
+cov_hg <- cov(h, g)
+var_g <- var(g)
+alpha <- -cov_hg / var_g
+I_control <- mean(h + alpha * (g - 0.5))
+
+cat("使用控制变量的方法得到的结果:", I_control, "\n")
+
+
+## -----------------------------------------------------------------------------
+# 重要性抽样的例子，计算exp(-x^2/2)的积分。
+# 使用重要性抽样
+n <- 10000
+u <- runif(n)
+g <- 1 / (1 + u^2)  # 权重函数
+h <- exp(-u^2 / 2) / g
+I_importance <- mean(h * g)
+
+cat("使用重要性抽样的方法得到的结果:", I_importance, "\n")
+
+
+## -----------------------------------------------------------------------------
+library(microbenchmark)
+set.seed(123)
+
+# 定义排序函数和模拟实验
+n_values <- c(1e4, 2e4, 4e4, 6e4, 8e4)
+num_simulations <- 100
+avg_times <- numeric(length(n_values))
+logn_values <- n_values * log(n_values)
+
+for (i in seq_along(n_values)) {
+  times <- microbenchmark(
+    sort(sample(1:n_values[i])),
+    times = num_simulations
+  )$time
+  avg_times[i] <- mean(times) / 1e6  # 转换为毫秒
+}
+
+# 回归分析
+lm_fit <- lm(avg_times ~ logn_values)
+
+# 绘制结果
+plot(logn_values, avg_times, main = "计算时间 vs n log(n)",
+     xlab = "n log(n)", ylab = "平均计算时间 (ms)")
+abline(lm_fit, col = "red")
+summary(lm_fit)
+
+
+## ----setup_global, include=FALSE----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE)
+
+
+## -----------------------------------------------------------------------------
+#在特定模拟环境下比较两种方法的power值。
+
+#Step 1: 定义已知的power值和样本数
+p1 <- 0.651  # 方法1的power值
+p2 <- 0.676  # 方法2的power值
+n <- 10000   # 实验次数
+#Step 2: Z检验计算
+# 计算Z统计量
+z_stat <- (p2 - p1) / sqrt((p1 * (1 - p1) + p2 * (1 - p2)) / n)
+
+# 计算p值
+p_value <- 2 * (1 - pnorm(abs(z_stat)))
+
+# 打印Z统计量和p值
+cat("Z统计量:", z_stat, "\n")
+cat("p值:", p_value, "\n")
+#Step 3: 判断结果
+# 判断是否拒绝原假设
+if (p_value < 0.05) {
+  cat("拒绝原假设：两种方法的power有显著差异。\n")
+} else {
+  cat("未能拒绝原假设：两种方法的power没有显著差异。\n")
+}
+
+
+## -----------------------------------------------------------------------------
+cat("我们选择Z检验，因为这是适用于大样本独立比例比较的最佳选择。\n")
+
+
+## -----------------------------------------------------------------------------
+
+#Step 1: 模拟实验设置
+set.seed(123)
+n <- 10000  # 实验次数
+p1 <- 0.651  # 方法1的power值
+p2 <- 0.676  # 方法2的power值
+
+# 生成模拟数据
+data1 <- rbinom(n, 1, p1)  # 方法1的结果
+data2 <- rbinom(n, 1, p2)  # 方法2的结果
+#Step 2: Z检验计算
+# 计算模拟数据中的平均值
+mean1 <- mean(data1)
+mean2 <- mean(data2)
+
+# 计算Z统计量
+z_stat_sim <- (mean2 - mean1) / sqrt((mean1 * (1 - mean1) + mean2 * (1 - mean2)) / n)
+
+# 计算p值
+p_value_sim <- 2 * (1 - pnorm(abs(z_stat_sim)))
+
+# 打印模拟结果的Z统计量和p值
+cat("模拟实验Z统计量:", z_stat_sim, "\n")
+cat("模拟实验p值:", p_value_sim, "\n")
+
+#Step 3: 验证结果
+# 判断模拟实验的结果是否与假设检验一致
+if (p_value_sim < 0.05) {
+  cat("通过模拟实验验证，两种方法的power存在显著差异。\n")
+} else {
+  cat("通过模拟实验验证，两种方法的power没有显著差异。\n")
+}
+
+
+## -----------------------------------------------------------------------------
+# 定义参数
+N <- 1000
+null_hypotheses <- 950
+alt_hypotheses <- 50
+alpha <- 0.1
+num_simulations <- 10000
+
+# 定义函数来生成 p 值
+generate_p_values <- function() {
+  p_values_null <- runif(null_hypotheses)  # 零假设的 p 值均匀分布
+  p_values_alt <- rbeta(alt_hypotheses, 0.1, 1)  # 备择假设的 p 值为 beta 分布
+  return(c(p_values_null, p_values_alt))  # 合并p值
+}
+
+# Bonferroni 校正
+bonferroni_correction <- function(p_values, alpha) {
+  return(p.adjust(p_values, method = "bonferroni") <= alpha)
+}
+
+# Benjamini-Hochberg 校正
+bh_correction <- function(p_values, alpha) {
+  return(p.adjust(p_values, method = "BH") <= alpha)
+}
+
+# 模拟计算 FWER, FDR, TPR
+calculate_metrics <- function(method) {
+  FWER <- 0
+  FDR <- 0
+  TPR <- 0
+  
+  for (i in 1:num_simulations) {
+    p_values <- generate_p_values()
+    rejected <- method(p_values, alpha)
+    
+    # 计算 FWER
+    FWER <- FWER + (sum(rejected[1:null_hypotheses]) > 0)
+    
+    # 计算 FDR 和 TPR
+    false_discoveries <- sum(rejected[1:null_hypotheses])
+    true_discoveries <- sum(rejected[(null_hypotheses+1):N])
+    total_discoveries <- sum(rejected)
+    
+    if (total_discoveries > 0) {
+      FDR <- FDR + false_discoveries / total_discoveries
+    }
+    
+    TPR <- TPR + true_discoveries / alt_hypotheses
+  }
+  
+  FWER <- FWER / num_simulations
+  FDR <- FDR / num_simulations
+  TPR <- TPR / num_simulations
+  
+  return(c(FWER, FDR, TPR))
+}
+
+# 运行模拟
+bonferroni_results <- calculate_metrics(bonferroni_correction)
+bh_results <- calculate_metrics(bh_correction)
+
+# 输出结果
+results <- data.frame(
+  Bonferroni_Correction = bonferroni_results,
+  BH_Correction = bh_results
+)
+rownames(results) <- c("FWER", "FDR", "TPR")
+
+print(results)
+
+
+## -----------------------------------------------------------------------------
+library(boot)
+
+# 生成样本
+set.seed(123)
+data <- rnorm(100, mean = 50, sd = 10)  # 正态分布，样本均值为50，标准差为10
+
+# 定义统计量函数，计算样本均值
+mean_stat <- function(data, indices) {
+  return(mean(data[indices]))  # 返回重抽样样本的均值
+}
+
+# 使用 bootstrap 方法，进行1000次重抽样，计算样本均值的置信区间
+bootstrap_results <- boot(data, statistic = mean_stat, R = 1000)
+
+# 计算 95% bootstrap 百分位置信区间
+ci_percentile <- boot.ci(bootstrap_results, type = "perc")
+print(ci_percentile)
+
+# 计算 95% 的标准正态置信区间
+ci_normal <- boot.ci(bootstrap_results, type = "norm")
+print(ci_normal)
+
+
+## -----------------------------------------------------------------------------
+# 使用 BCa 方法计算 95% bootstrap 置信区间
+ci_bca <- boot.ci(bootstrap_results, type = "bca")
+print(ci_bca)
+
+
+## -----------------------------------------------------------------------------
+# 假设有一个主成分分析的例子
+eigen_values <- c(3.5, 2.1, 1.5, 1.2, 0.8)
+theta_hat <- eigen_values[1] / sum(eigen_values)
+
+# Jackknife估计偏差和标准误差
+jackknife_values <- sapply(1:length(eigen_values), function(i) {
+  theta_i <- eigen_values[-i][1] / sum(eigen_values[-i])
+  return(theta_i)
+})
+bias <- (length(eigen_values) - 1) * (mean(jackknife_values) - theta_hat)
+se <- sqrt((length(eigen_values) - 1) * mean((jackknife_values - mean(jackknife_values))^2))
+
+list(bias = bias, se = se)
+
+
+## -----------------------------------------------------------------------------
+# 示例数据
+set.seed(123)
+x <- rnorm(100)
+y <- 2*x^3 + rnorm(100)
+
+# 使用cubic多项式拟合
+model_cubic <- lm(y ~ poly(x, 3))
+
+# 使用leave-one-out交叉验证
+library(boot)
+cv_error <- cv.glm(data = data.frame(x, y), glmfit = model_cubic, K = length(x))
+
+# 调整R²值
+adj_r2 <- summary(model_cubic)$adj.r.squared
+
+list(cv_error = cv_error$delta[1], adj_r2 = adj_r2)
+
+
+## -----------------------------------------------------------------------------
+# 假设有两个样本F和G
+F <- rnorm(30, mean = 0)
+G <- rnorm(30, mean = 0.5)
+
+# 计算原始统计量
+original_stat <- mean(F) - mean(G)
+
+# 置换检验
+pooled <- c(F, G)
+perm_stats <- replicate(1000, {
+  permuted <- sample(pooled)
+  F_perm <- permuted[1:30]
+  G_perm <- permuted[31:60]
+  return(mean(F_perm) - mean(G_perm))
+})
+
+p_value <- mean(abs(perm_stats) >= abs(original_stat))
+p_value
+
+
+## -----------------------------------------------------------------------------
+# 假设有三个样本A, B, C
+A <- rnorm(30, mean = 1)
+B <- rnorm(30, mean = 0.5)
+C <- rnorm(30, mean = 0)
+
+# 计算原始统计量，总体均值差异
+original_stat <- var(c(A, B, C))
+
+# 置换检验
+pooled <- c(A, B, C)
+perm_stats <- replicate(1000, {
+  permuted <- sample(pooled)
+  A_perm <- permuted[1:30]
+  B_perm <- permuted[31:60]
+  C_perm <- permuted[61:90]
+  return(var(c(A_perm, B_perm, C_perm)))
+})
+
+p_value <- mean(perm_stats >= original_stat)
+p_value
+
+
+## -----------------------------------------------------------------------------
+# 加载必要的包
+library(coda)
+
+# 设置参数
+a <- 2       # Beta 分布的参数 a
+b <- 2       # Beta 分布的参数 b
+n <- 10      # 最大可能的 x 值
+n_samples <- 10000  # 每条链的样本数
+
+# Gibbs 采样函数
+gibbs_sampler <- function(n_samples, n, a, b) {
+  x_samples <- numeric(n_samples)
+  y_samples <- numeric(n_samples)
+  
+  # 初始化值
+  x_samples[1] <- rbinom(1, n, 0.5)
+  y_samples[1] <- rbeta(1, x_samples[1] + a, n - x_samples[1] + b)
+  
+  for (i in 2:n_samples) {
+    # 使用条件分布从 x | y 采样
+    x_samples[i] <- rbinom(1, n, y_samples[i - 1])
+    # 使用条件分布从 y | x 采样
+    y_samples[i] <- rbeta(1, x_samples[i] + a, n - x_samples[i] + b)
+  }
+  
+  return(list(x = x_samples, y = y_samples))
+}
+
+# 生成两条独立的链
+chain1 <- gibbs_sampler(n_samples, n, a, b)
+chain2 <- gibbs_sampler(n_samples, n, a, b)
+
+# 将链转化为 mcmc 对象
+x_chain1 <- mcmc(chain1$x)
+y_chain1 <- mcmc(chain1$y)
+x_chain2 <- mcmc(chain2$x)
+y_chain2 <- mcmc(chain2$y)
+
+# 结合链并执行 Gelman-Rubin 收敛监测
+chains_x <- mcmc.list(x_chain1, x_chain2)
+chains_y <- mcmc.list(y_chain1, y_chain2)
+gelman_diag_x <- gelman.diag(chains_x)
+gelman_diag_y <- gelman.diag(chains_y)
+
+# 输出 Gelman-Rubin 诊断结果
+print("x 链的 Gelman-Rubin 诊断结果：")
+print(gelman_diag_x)
+print("y 链的 Gelman-Rubin 诊断结果：")
+print(gelman_diag_y)
+
+# 检查收敛性
+if (all(gelman_diag_x$psrf < 1.2) && all(gelman_diag_y$psrf < 1.2)) {
+  cat("链已收敛\n")
+} else {
+  cat("链未完全收敛，请增加样本数\n")
+}
+
+# 可视化生成的样本
+par(mfrow = c(1, 2))
+plot(chain1$x, chain1$y, main = "Gibbs Sampler Chain 1", xlab = "x", ylab = "y", pch = 20, col = rgb(0, 0, 1, 0.5))
+plot(chain2$x, chain2$y, main = "Gibbs Sampler Chain 2", xlab = "x", ylab = "y", pch = 20, col = rgb(1, 0, 0, 0.5))
+
+
+
+## -----------------------------------------------------------------------------
+# 定义参数
+a <- 2
+b <- 2
+n <- 10
+n_samples <- 10000
+
+# Gibbs 采样函数
+gibbs_sampler <- function(n_samples, n, a, b) {
+  x_samples <- numeric(n_samples)
+  y_samples <- numeric(n_samples)
+  
+  # 初始化值
+  x_samples[1] <- rbinom(1, n, 0.5)
+  y_samples[1] <- rbeta(1, x_samples[1] + a, n - x_samples[1] + b)
+  
+  for (i in 2:n_samples) {
+    x_samples[i] <- rbinom(1, n, y_samples[i - 1])
+    y_samples[i] <- rbeta(1, x_samples[i] + a, n - x_samples[i] + b)
+  }
+  
+  return(list(x = x_samples, y = y_samples))
+}
+
+# 生成样本
+samples <- gibbs_sampler(n_samples, n, a, b)
+
+# Gelman-Rubin 收敛监控
+x_chain <- mcmc(samples$x)
+y_chain <- mcmc(samples$y)
+chains <- mcmc.list(x_chain, y_chain)
+gelman_diag <- gelman.diag(chains)
+print(gelman_diag)
+
+# 绘制样本
+plot(samples$x, samples$y, main = "Gibbs Sampler for Bivariate Density", xlab = "x", ylab = "y")
+
+
+## -----------------------------------------------------------------------------
+library(gsl)  # 用于Gamma函数
+
+# 定义函数来计算第 k 项
+compute_term <- function(k, a, d) {
+  norm_a <- sqrt(sum(a^2))
+  term <- ((-1)^k / (factorial(k) * 2^k)) * (norm_a^(2 * k + 2) / ((2 * k + 1) * (2 * k + 2))) *
+          (gamma((d + 1) / 2) * gamma(k + 1.5) / gamma(k + d / 2 + 1))
+  return(term)
+}
+
+# 测试计算第 k 项
+k <- 0  # 可以改变 k 值来测试不同项
+a <- c(1, 2)  # 向量 a
+d <- length(a)  # 维度 d
+compute_term(k, a, d)
+
+
+## -----------------------------------------------------------------------------
+compute_sum <- function(a, d, k_max = 100) {
+  sum_result <- 0
+  for (k in 0:k_max) {
+    sum_result <- sum_result + compute_term(k, a, d)
+  }
+  return(sum_result)
+}
+
+# 测试计算和
+a <- c(1, 2)
+d <- length(a)
+compute_sum(a, d)
+
+
+## -----------------------------------------------------------------------------
+# 使用已定义的函数 compute_sum 计算在 a = (1, 2)^T 的情况下的级数和
+a <- c(1, 2)
+d <- length(a)
+sum_result <- compute_sum(a, d)
+
+# 输出结果
+sum_result
+
+
+## -----------------------------------------------------------------------------
+library(pracma)  # 用于数值积分
+library(gsl)     # 用于Gamma函数
+
+# 定义函数来计算积分
+compute_integral <- function(upper_limit, k, exponent) {
+  integrand <- function(u) {
+    (1 + u^2 / k)^(-exponent)
+  }
+  integral_result <- integrate(integrand, lower = 0, upper = upper_limit)$value
+  return(integral_result)
+}
+# 定义函数来计算 c_k 值
+compute_ck <- function(k, a) {
+  c_k <- sqrt((a^2 * k) / (k + 1 - a^2))
+  return(c_k)
+}
+
+compute_ck_minus_1 <- function(k, a) {
+  c_k_minus_1 <- sqrt((a^2 * (k - 1)) / (k - 1 - a^2))
+  return(c_k_minus_1)
+}
+# 定义详细的 solve_equation_details 函数
+solve_equation_details <- function(k, a) {
+  # 计算 c_{k-1} 和 c_k
+  c_k_minus_1 <- compute_ck_minus_1(k, a)
+  c_k <- compute_ck(k, a)
+  
+  # 计算方程左侧的积分和常数项
+  left_term_constant <- (2 * gamma(k / 2)) / (sqrt(pi * (k - 1)) * gamma((k - 1) / 2))
+  left_term_integral <- compute_integral(c_k_minus_1, k - 1, k / 2)
+  left_term <- left_term_constant * left_term_integral
+  
+  # 计算方程右侧的积分和常数项
+  right_term_constant <- (2 * gamma((k + 1) / 2)) / (sqrt(pi * k) * gamma(k / 2))
+  right_term_integral <- compute_integral(c_k, k, (k + 1) / 2)
+  right_term <- right_term_constant * right_term_integral
+  
+  # 返回左右两侧的值以及差值
+  difference <- left_term - right_term
+  return(list(left_term = left_term, right_term = right_term, difference = difference))
+}
+
+
+## -----------------------------------------------------------------------------
+# 计算11.4中的曲线阈值
+compute_threshold_11_4 <- function(k, a) {
+  threshold_k_minus_1 <- sqrt(a^2 * (k - 1) / (k - a^2))
+  threshold_k <- sqrt(a^2 * k / (k + 1 - a^2))
+  return(list(threshold_k_minus_1 = threshold_k_minus_1, threshold_k = threshold_k))
+}
+# 比较11.4和11.5的函数
+compare_11_4_and_11_5 <- function(k_values, a) {
+  results <- data.frame(
+    k = k_values,
+    threshold_k_minus_1 = NA,
+    threshold_k = NA,
+    left_term = NA,
+    right_term = NA,
+    difference = NA
+  )
+  
+  for (i in 1:length(k_values)) {
+    k <- k_values[i]
+    
+    # 计算11.4中的阈值
+    thresholds <- compute_threshold_11_4(k, a)
+    results$threshold_k_minus_1[i] <- thresholds$threshold_k_minus_1
+    results$threshold_k[i] <- thresholds$threshold_k
+    
+    # 计算11.5中的方程解
+    equation_result <- solve_equation_details(k, a)
+    results$left_term[i] <- equation_result$left_term
+    results$right_term[i] <- equation_result$right_term
+    results$difference[i] <- equation_result$difference
+  }
+  
+  return(results)
+}
+# 测试比较
+k_values <- c(4, 25, 100, 500, 1000)
+a <- 0.5
+comparison_results <- compare_11_4_and_11_5(k_values, a)
+
+# 输出比较结果
+print(comparison_results)
+
+
+
+## -----------------------------------------------------------------------------
+# 初始化观测数据
+Y <- c(0.54, 0.48, 0.33, 0.43, 1.00, 1.00, 0.91, 1.00, 0.21, 0.85)
+tau <- 1.0  # 右删失阈值
+
+# 分离被删失的数据和非删失的数据
+Y_observed <- Y[Y < tau]
+Y_censored <- Y[Y == tau]
+
+# 初始化参数 lambda
+lambda <- 1.0  # 可以选择一个合理的初始值
+tolerance <- 1e-6  # 收敛条件
+max_iter <- 1000  # 最大迭代次数
+
+# E-M 算法
+for (iter in 1:max_iter) {
+  # 计算 E 步中的期望
+  expected_censored <- tau + 1 / lambda
+  
+  # M 步：更新 lambda
+  lambda_new <- length(Y) / (sum(Y_observed) + length(Y_censored) * expected_censored)
+  
+  # 检查收敛
+  if (abs(lambda_new - lambda) < tolerance) {
+    break
+  }
+  
+  # 更新 lambda
+  lambda <- lambda_new
+}
+
+# 输出最终的 lambda 值
+cat("E-M 算法估计的 lambda:", lambda, "\n")
+
+# 与 MLE 进行比较
+lambda_mle <- length(Y) / sum(Y)
+cat("MLE 估计的 lambda:", lambda_mle, "\n")
+
+
+## -----------------------------------------------------------------------------
+# 如果尚未安装 lpSolve 包，请先安装
+if (!require("lpSolve")) {
+  install.packages("lpSolve")
+}
+
+# 加载 lpSolve 包
+library(lpSolve)
+
+# 目标函数系数 (最小化 4x + 2y + 9z)
+objective <- c(4, 2, 9)
+
+# 约束条件的系数矩阵
+constraints <- matrix(c(2, 1, 1,  # 2x + y + z
+                        1, -1, 3), # x - y + 3z
+                      nrow = 2, byrow = TRUE)
+
+# 约束条件右侧的值
+rhs <- c(2, 3)
+
+# 约束条件方向
+directions <- c("<=", "<=")
+
+# 求解线性规划问题
+solution <- lp("min", objective, constraints, directions, rhs, compute.sens = TRUE)
+
+# 输出结果
+cat("最优解为：\n")
+print(solution$solution)
+
+cat("\n目标函数的最小值为：\n")
+print(solution$objval)
+
+cat("\n灵敏度分析结果：\n")
+print(solution$sens.coef.from)
+print(solution$sens.coef.to)
+
+
+## -----------------------------------------------------------------------------
+
+#第3题：使用 for 循环和 lapply() 拟合线性模型
+# 定义公式列表
+formulas <- list(
+  mpg ~ disp,
+  mpg ~ I(1 / disp),
+  mpg ~ disp + wt,
+  mpg ~ I(1 / disp) + wt
+)
+
+# 使用 for 循环拟合模型
+models_for <- list()
+for (i in seq_along(formulas)) {
+  models_for[[i]] <- lm(formulas[[i]], data = mtcars)
+}
+
+# 使用 lapply 拟合模型
+models_lapply <- lapply(formulas, function(f) lm(f, data = mtcars))
+
+#第4题：对bootstrap replicates拟合模型
+# 创建 bootstrap 样本
+bootstraps <- lapply(1:10, function(i) {
+  rows <- sample(1:nrow(mtcars), size = nrow(mtcars), replace = TRUE)
+  mtcars[rows, ]
+})
+
+# 使用 for 循环拟合 mpg ~ disp 的模型
+models_boot_for <- list()
+for (i in seq_along(bootstraps)) {
+  models_boot_for[[i]] <- lm(mpg ~ disp, data = bootstraps[[i]])
+}
+
+# 使用 lapply 拟合 mpg ~ disp 的模型（不使用匿名函数）
+fit_model <- function(data) {
+  lm(mpg ~ disp, data = data)
+}
+models_boot_lapply <- lapply(bootstraps, fit_model)
+
+#第5题：提取每个模型的r方值
+# 定义提取 R^2 的函数
+rsq <- function(mod) summary(mod)$r.squared
+
+# 提取第3题中所有模型的 R^2
+r2_for <- sapply(models_for, rsq)
+r2_lapply <- sapply(models_lapply, rsq)
+
+# 提取第4题中 bootstrap 模型的 R^2
+r2_boot_for <- sapply(models_boot_for, rsq)
+r2_boot_lapply <- sapply(models_boot_lapply, rsq)
+
+# 输出 R^2 值
+cat("第3题（for 循环）模型的 R^2：\n")
+print(r2_for)
+cat("\n第3题（lapply）模型的 R^2：\n")
+print(r2_lapply)
+
+cat("\n第4题（bootstrap for 循环）模型的 R^2：\n")
+print(r2_boot_for)
+cat("\n第4题（bootstrap lapply）模型的 R^2：\n")
+print(r2_boot_lapply)
+
+
+## -----------------------------------------------------------------------------
+# 模拟 100 次 t 检验
+trials <- replicate(
+  100,
+  t.test(rpois(10, 10), rpois(7, 10)),
+  simplify = FALSE
+)
+
+# 使用匿名函数提取每次试验的 p 值
+p_values_anonymous <- sapply(trials, function(x) x$p.value)
+
+# 挑战：直接使用 [[ 提取 p 值
+p_values_direct <- sapply(trials, `[[`, "p.value")
+
+# 输出 p 值
+cat("使用匿名函数提取的 p 值：\n")
+print(p_values_anonymous)
+
+cat("\n直接使用 [[ 提取的 p 值：\n")
+print(p_values_direct)
+
+
+## -----------------------------------------------------------------------------
+# 定义并行迭代函数
+parallel_apply <- function(FUN, ..., output_type = "vector") {
+  # 使用 Map 并行迭代所有输入
+  results <- Map(FUN, ...)
+  
+  # 根据输出类型存储结果
+  if (output_type == "vector") {
+    return(vapply(results, identity, FUN.VALUE = integer(1)))  # 确保返回值为整数
+  } else if (output_type == "matrix") {
+    return(do.call(rbind, results))
+  } else {
+    stop("Unsupported output_type. Use 'vector' or 'matrix'.")
+  }
+}
+
+# 示例测试
+x <- 1:5
+y <- 6:10
+
+example_function <- function(a, b) a + b
+
+# 并行迭代并输出为向量
+vector_output <- parallel_apply(example_function, x, y, output_type = "vector")
+cat("向量输出：\n")
+print(vector_output)
+
+# 并行迭代并输出为矩阵
+matrix_output <- parallel_apply(example_function, x, y, output_type = "matrix")
+cat("\n矩阵输出：\n")
+print(matrix_output)
+
+
+## -----------------------------------------------------------------------------
+# 定义快速版 chisq.test，只计算卡方统计量
+fast_chisq_test <- function(x, y) {
+  # 检查输入是否为数值向量且无缺失值
+  if (!is.numeric(x) || !is.numeric(y) || any(is.na(x)) || any(is.na(y))) {
+    stop("Input must be two numeric vectors with no missing values.")
+  }
+  
+  # 生成列联表
+  observed <- table(x, y)
+  
+  # 计算期望值
+  expected <- rowSums(observed) %o% colSums(observed) / sum(observed)
+  
+  # 计算卡方统计量
+  chisq_stat <- sum((observed - expected)^2 / expected)
+  
+  return(chisq_stat)
+}
+
+# 测试快速版 chisq.test
+x <- c(1, 2, 1, 2, 1, 3, 3, 2, 3, 1)
+y <- c(1, 1, 2, 2, 2, 1, 3, 3, 3, 2)
+fast_chisq_test(x, y) # 返回卡方统计量
+
+
+## -----------------------------------------------------------------------------
+# 定义快速版 table
+fast_table <- function(x, y) {
+  # 检查输入是否为整数向量且无缺失值
+  if (!is.integer(x) || !is.integer(y) || any(is.na(x)) || any(is.na(y))) {
+    stop("Input must be two integer vectors with no missing values.")
+  }
+  
+  # 找到唯一值
+  levels_x <- sort(unique(x))
+  levels_y <- sort(unique(y))
+  
+  # 初始化结果矩阵
+  result <- matrix(0, nrow = length(levels_x), ncol = length(levels_y),
+                   dimnames = list(levels_x, levels_y))
+  
+  # 填充矩阵
+  for (i in seq_along(x)) {
+    result[as.character(x[i]), as.character(y[i])] <- result[as.character(x[i]), as.character(y[i])] + 1
+  }
+  
+  return(result)
+}
+
+# 测试快速版 table
+x <- as.integer(c(1, 2, 1, 2, 1, 3, 3, 2, 3, 1))
+y <- as.integer(c(1, 1, 2, 2, 2, 1, 3, 3, 3, 2))
+fast_table(x, y) # 返回列联表
+
+
+## -----------------------------------------------------------------------------
+#Rcpp和R函数实现Gibbs采样
+# 加载Rcpp库
+library(Rcpp)
+
+# 编写Rcpp函数
+cppFunction('
+NumericMatrix gibbsRcpp(int iterations, int n, double a, double b) {
+  NumericMatrix samples(iterations, 2);
+  samples(0, 0) = 0;  // 初始化 x
+  samples(0, 1) = 0.5; // 初始化 y
+  
+  for (int i = 1; i < iterations; i++) {
+    // 获取上一轮的值
+    double y_prev = samples(i - 1, 1);
+    int x_prev = samples(i - 1, 0);
+    
+    // 更新x: Binomial(n, y_prev)
+    samples(i, 0) = R::rbinom(n, y_prev);
+    
+    // 更新y: Beta(x_prev + a, n - x_prev + b)
+    samples(i, 1) = R::rbeta(x_prev + a, n - x_prev + b);
+  }
+  
+  return samples;
+}
+')
+
+# Gibbs采样
+gibbsR <- function(iterations, n, a, b) {
+  x <- numeric(iterations)
+  y <- numeric(iterations)
+  x[1] <- 0
+  y[1] <- 0.5
+  
+  for (i in 2:iterations) {
+    y_prev <- y[i - 1]
+    x[i] <- rbinom(1, size = n, prob = y_prev)
+    x_prev <- x[i]
+    y[i] <- rbeta(1, shape1 = x_prev + a, shape2 = n - x_prev + b)
+  }
+  
+  cbind(x, y)
+}
+
+
+## -----------------------------------------------------------------------------
+# 参数设置
+iterations <- 10000
+n <- 10
+a <- 2
+b <- 3
+
+# 运行Rcpp和R函数
+set.seed(123)
+samples_rcpp <- gibbsRcpp(iterations, n, a, b)
+
+set.seed(123)
+samples_r <- gibbsR(iterations, n, a, b)
+
+#使用qqplot比较结果
+# 比较x分量
+qqplot(samples_r[, 1], samples_rcpp[, 1], main = "QQ-Plot for x", xlab = "R", ylab = "Rcpp")
+abline(0, 1, col = "red")
+
+# 比较y分量
+qqplot(samples_r[, 2], samples_rcpp[, 2], main = "QQ-Plot for y", xlab = "R", ylab = "Rcpp")
+abline(0, 1, col = "red")
+
+
+## -----------------------------------------------------------------------------
+library(microbenchmark)
+
+# 比较时间
+timing <- microbenchmark(
+  R = gibbsR(iterations, n, a, b),
+  Rcpp = gibbsRcpp(iterations, n, a, b),
+  times = 10
+)
+print(timing)
+
+

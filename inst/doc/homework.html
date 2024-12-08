@@ -14,7 +14,7 @@
 
 <meta name="date" content="2024-12-08" />
 
-<title>hw1</title>
+<title>homework</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -338,14 +338,15 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">hw1</h1>
+<h1 class="title toc-ignore">homework</h1>
 <h4 class="author">阳航</h4>
 <h4 class="date">2024-12-08</h4>
 
 
 
-<div id="绘制函数图" class="section level2">
-<h2>1: 绘制函数图</h2>
+<div id="hw0" class="section level1">
+<h1>hw0</h1>
+<p>1: 绘制函数图</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># 绘制一个简单的正弦函数</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
@@ -400,7 +401,1106 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </tbody>
 </table>
 <p>公式 <span class="math display">\[\int_0^1 x^2 \, dx =
-\frac{1}{3}\]</span></p>
+\frac{1}{3}\]</span> # hw1</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#练习 3.4: 变换方法 (Transformation Methods)</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># 正态分布随机变量生成</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(u, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co"># 生成标准正态分布的随机变量</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">main =</span> <span class="st">&quot;标准正态分布的随机数&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAABBVBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZmYAZpAAZrY6AAA6ADo6AGY6OgA6Ojo6OmY6OpA6Zjo6ZmY6ZpA6ZrY6kJA6kLY6kNtmAABmADpmOgBmOjpmZjpmZmZmZpBmkJBmkLZmkNtmtrZmtttmtv+QOgCQOjqQZgCQZjqQZmaQZpCQkJCQkLaQkNuQtraQttuQ27aQ29uQ2/+2ZgC2Zjq2kDq2kGa2kJC2tma2tpC2tra2ttu227a229u22/+2/7a2/9u2///T09PbkDrbkGbbtmbbtpDbtrbb25Db27bb29vb2//b/7bb/9vb////tmb/tpD/trb/25D/27b/29v//7b//9v///+4x/IGAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAMTklEQVR4nO2dj3/SSBqHh7bsFa9p79pbWJBeXVttr6t7a6rr4lq3G7WKSm6phP//T7l3ZpKQAOGbkAkJ+D6fj5WmwzDz5J0fGfJDjJmFiLILUHVYEIAFAVgQgAUBWBCABQFYEIAFAVgQgAUBWBCABQFYEIAFAVgQgAUBWBCABQFYEIAFAVgQgAUBWBCABQFYEIAFAVgQgAUBWBCABQFMCXKto8Gczd5F9/XF8by/RBl19l/Ht9z2BuOr/WexbcPOYSwj/ZH0CdcLsh5aB7N/fm49pJ9X6ifCmCCxO/Z6kt/a4og2vLVk9YaNrWtX7NzoRHe9CS8aO2HJR61a3IV3JnYHb6cEuWIrtsERTfUJU+9Vn/0geDls1Adjp3bSe2lZOh1la4uHZ7UfW+I0RcVMCopBlT796/I+bR61tm76/ehftm7iaUmj3OL1P0U3DK1mLJUt9O9+XhQ68k2OCFK5te9fWkqqPam6FkRp1Au/YHtCiN1ww2IKE0SlrF9etmnfyXARYTXigm51NImdp/TfYxEEg3ZxtX8TSfWyEeZFEeqdW9Yx+fi9JaNDRREVwRX1L7e93xq1pxTH6hNnBVHT2hO1w4E2G9lx8zEiiNrWc9op27FYd8W21RC0L52IHEksglQBHbF1Ek3hR1R8H8ez8c7ICSV4Lrfq9CTIoVIcDd4FKb1basnbMl4mgj6S4zNx2BZC+m5TU15ct0IiyN8tb+/vTQu6vbyebWJU2X9Meg3VA+km4oiJIfmuyEjgC/quczAIBA0bf7s4/tw5+OOi+7R37n+oK6YjqE+/ioeq31OZAEwJssWuF/S/bV2vUbclAkFBJDu0x7SgsL9RG+nfw8jvunJjzxbbD8MPaEb3gi+otv9LRNC20kzxeEM/Io7jTcwVkga159necBZDgmini8Prcax/dKmlPxbf0848bAehIItK++5p70qECanADwb0xqOwAqpHovGws7cn/M3DhjihdlynjdbpRFD9dzmJ0JX3BQ2te5aMoNOgXDs/xwTRi8dKkThN008bEkTlF0rCRBBV4fLGnmpiWlBsvzni6EOjduqRskM5GxpapEu1skhCWdFTFUH+Rsr9hDqYXRV+gSDqg0469358tB9GEJVrpx3rg/5HEmmG9dflm8snsyPLLIYE2UJ81z1+J2Ol9m9ZEI/24a72pZrYpwRB79v712qKczO+61C/OdBjvZoZRRJe0dA8LUhG0K5qXqEgOYTXfokIou6m/qHTmAjyep/8qZN3cfx8avgoTtCIyrArd3PTFv9S/ab6RQpSTewqGMCnBH3tvSJHl93uz1PDraqOP5iNpZ9nToIgqTIUJAONBIVNzHvU0H3QaRhBNGU4F/UXjYOBI0SKqaIZQW+tjh/pFDL+2KMaG25i/b4ttdYH3ovj61i6SbfxgqLMniuIEvR6eqiKCAojyBV7MucwrXxjf9TeunFUly9wH21G0KirmrNN5aB6jFqydnqshoJGnSP1lq03vV9btWDI0scergjq5HducwWNx6EgObc5iwjyLn6SSUYtFY71LzJeVRlUJrqcKxE09qexoZFdWceooK/9GUG3qrQqfOTOHsk+MzCnncb6UC2o3vs4V5BMKBuc3E6CXtOsnDL92h/IJEE4fr58IlN7H89pPPg0ficEHsQMCtrpPvHrcSePrwNBqg96Kbso3fwP1ZGAfCWL7VDnpAUNraNRcNzvNtT8NjZ39iPofUPXyh/FdA0nPr2r2j//++hgMOoeh4P6Z38yWf9gqd5xfNeudRu1+4Km4TuLVgIMC6Ky3p1bk37P649j0yJ/yyxvhbAseuNOMKt9d++BrMWemJ7nSgVf+7rZhRH0se13tvRX2a699/952id6r2RCSnKhDulGMplcVvh6RWOllETtmaYWc1ZDYhheD5peFnqxcLFmLnfnasZJh6P708cBkZCiLn2gxmzl6oEugv9X7/1F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" /><!-- --></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#练习 3.11: 复合泊松过程 (Compound Poisson Process)</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># 设置泊松过程和Gamma分布的参数</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span>  <span class="co"># 泊松过程的参数</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span>    <span class="co"># 模拟次数</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">2</span>   <span class="co"># Gamma分布的形状参数</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">1</span>    <span class="co"># Gamma分布的尺度参数</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co"># 模拟复合泊松过程</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>compound_poisson <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, alpha, beta, n) {</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    k <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1</span>, lambda)</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>    <span class="cf">if</span> (k <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rgamma</span>(k, alpha, beta))</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>    }</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>  }</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>}</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co"># 生成数据并绘制直方图</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> <span class="fu">compound_poisson</span>(lambda, alpha, beta, n)</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="fu">hist</span>(sim_data, <span class="at">main =</span> <span class="st">&quot;复合泊松-伽玛过程模拟&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;值&quot;</span>, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># 计算复合泊松-伽玛过程的均值和方差</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>mean_sim <span class="ot">&lt;-</span> <span class="fu">mean</span>(sim_data)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>var_sim <span class="ot">&lt;-</span> <span class="fu">var</span>(sim_data)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># 打印结果</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;复合泊松-伽玛过程的均值: &quot;</span>, mean_sim, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 复合泊松-伽玛过程的均值:  9.722756</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;复合泊松-伽玛过程的方差: &quot;</span>, var_sim, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 复合泊松-伽玛过程的方差:  29.97162</code></pre>
+</div>
+<div id="hw2" class="section level1">
+<h1>hw2</h1>
+<div id="exercise-5.4" class="section level2">
+<h2>Exercise 5.4</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Monte Carlo积分的练习，使用对偶变量减少方差。</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># 设定种子以确保可重复性</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co"># 对偶变量方法计算exp(-x^2)的积分</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>u<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="dv">1</span><span class="sc">-</span>u)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>I_antithetic <span class="ot">&lt;-</span> <span class="fu">mean</span>((x <span class="sc">+</span> y) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co"># 直接Monte Carlo方法</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>I_standard <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co"># 打印结果</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;对偶变量方法的结果:&quot;</span>, I_antithetic, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 对偶变量方法的结果: 0.7472603</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;标准Monte Carlo方法的结果:&quot;</span>, I_standard, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 标准Monte Carlo方法的结果: 0.7488739</code></pre>
+</div>
+<div id="exercise-5.9" class="section level2">
+<h2>Exercise 5.9</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># 使用控制变量减少方差的方法。</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co"># 使用控制变量计算e^(-x)的积分</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>u)</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>g <span class="ot">&lt;-</span> u  <span class="co"># 控制变量 g(u) = u</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co"># 计算</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>cov_hg <span class="ot">&lt;-</span> <span class="fu">cov</span>(h, g)</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>var_g <span class="ot">&lt;-</span> <span class="fu">var</span>(g)</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="sc">-</span>cov_hg <span class="sc">/</span> var_g</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>I_control <span class="ot">&lt;-</span> <span class="fu">mean</span>(h <span class="sc">+</span> alpha <span class="sc">*</span> (g <span class="sc">-</span> <span class="fl">0.5</span>))</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;使用控制变量的方法得到的结果:&quot;</span>, I_control, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 使用控制变量的方法得到的结果: 0.6320454</code></pre>
+</div>
+<div id="exercise-5.13" class="section level2">
+<h2>Exercise 5.13</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># 重要性抽样的例子，计算exp(-x^2/2)的积分。</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># 使用重要性抽样</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> u<span class="sc">^</span><span class="dv">2</span>)  <span class="co"># 权重函数</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>u<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">/</span> g</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>I_importance <span class="ot">&lt;-</span> <span class="fu">mean</span>(h <span class="sc">*</span> g)</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;使用重要性抽样的方法得到的结果:&quot;</span>, I_importance, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 使用重要性抽样的方法得到的结果: 0.8551366</code></pre>
+</div>
+<div id="monte-carlo-experiment" class="section level2">
+<h2>Monte Carlo Experiment</h2>
+<p>对不同大小的n，进行快速排序算法的计算时间测量，并与n
+log(n)进行回归分析。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co"># 定义排序函数和模拟实验</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>n_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1e4</span>, <span class="fl">2e4</span>, <span class="fl">4e4</span>, <span class="fl">6e4</span>, <span class="fl">8e4</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>num_simulations <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>avg_times <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(n_values))</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>logn_values <span class="ot">&lt;-</span> n_values <span class="sc">*</span> <span class="fu">log</span>(n_values)</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(n_values)) {</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  times <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>    <span class="fu">sort</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n_values[i])),</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>    <span class="at">times =</span> num_simulations</span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>  )<span class="sc">$</span>time</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>  avg_times[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(times) <span class="sc">/</span> <span class="fl">1e6</span>  <span class="co"># 转换为毫秒</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>}</span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a><span class="co"># 回归分析</span></span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(avg_times <span class="sc">~</span> logn_values)</span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a><span class="co"># 绘制结果</span></span>
+<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a><span class="fu">plot</span>(logn_values, avg_times, <span class="at">main =</span> <span class="st">&quot;计算时间 vs n log(n)&quot;</span>,</span>
+<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;n log(n)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;平均计算时间 (ms)&quot;</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a><span class="fu">abline</span>(lm_fit, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = avg_times ~ logn_values)
+## 
+## Residuals:
+##         1         2         3         4         5 
+## -0.002063  0.007003  0.003044 -0.019434  0.011450 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.425e-01  1.129e-02   12.62  0.00107 ** 
+## logn_values 6.654e-06  2.077e-08  320.42  6.7e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.0138 on 3 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 1.027e+05 on 1 and 3 DF,  p-value: 6.704e-08</code></pre>
+</div>
+</div>
+<div id="hw3" class="section level1">
+<h1>hw3</h1>
+<p>练习 6.6
+在特定模拟环境下进行10,000次实验，比较两种方法的power值：一种为0.651，另一种为0.676。
+假设检验选择：Z检验。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co">#在特定模拟环境下比较两种方法的power值。</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co">#Step 1: 定义已知的power值和样本数</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fl">0.651</span>  <span class="co"># 方法1的power值</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fl">0.676</span>  <span class="co"># 方法2的power值</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span>   <span class="co"># 实验次数</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="co">#Step 2: Z检验计算</span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="co"># 计算Z统计量</span></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (p2 <span class="sc">-</span> p1) <span class="sc">/</span> <span class="fu">sqrt</span>((p1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">+</span> p2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)) <span class="sc">/</span> n)</span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="co"># 计算p值</span></span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat)))</span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="co"># 打印Z统计量和p值</span></span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Z统计量:&quot;</span>, z_stat, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Z统计量: 3.742519</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;p值:&quot;</span>, p_value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## p值: 0.0001821846</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co">#Step 3: 判断结果</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="co"># 判断是否拒绝原假设</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="cf">if</span> (p_value <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;拒绝原假设：两种方法的power有显著差异。</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;未能拒绝原假设：两种方法的power没有显著差异。</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## 拒绝原假设：两种方法的power有显著差异。</code></pre>
+<p>练习 6.B
+探讨在练习6.6中的假设检验问题，选择合适的检验方法并解释理由</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;我们选择Z检验，因为这是适用于大样本独立比例比较的最佳选择。</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 我们选择Z检验，因为这是适用于大样本独立比例比较的最佳选择。</code></pre>
+<p>模拟实验</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co">#Step 1: 模拟实验设置</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># 实验次数</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fl">0.651</span>  <span class="co"># 方法1的power值</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fl">0.676</span>  <span class="co"># 方法2的power值</span></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="co"># 生成模拟数据</span></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p1)  <span class="co"># 方法1的结果</span></span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p2)  <span class="co"># 方法2的结果</span></span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="co">#Step 2: Z检验计算</span></span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="co"># 计算模拟数据中的平均值</span></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a>mean1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(data1)</span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a>mean2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(data2)</span>
+<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="co"># 计算Z统计量</span></span>
+<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a>z_stat_sim <span class="ot">&lt;-</span> (mean2 <span class="sc">-</span> mean1) <span class="sc">/</span> <span class="fu">sqrt</span>((mean1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mean1) <span class="sc">+</span> mean2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mean2)) <span class="sc">/</span> n)</span>
+<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="co"># 计算p值</span></span>
+<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a>p_value_sim <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat_sim)))</span>
+<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a><span class="co"># 打印模拟结果的Z统计量和p值</span></span>
+<span id="cb28-22"><a href="#cb28-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;模拟实验Z统计量:&quot;</span>, z_stat_sim, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 模拟实验Z统计量: 3.316617</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;模拟实验p值:&quot;</span>, p_value_sim, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 模拟实验p值: 0.0009111444</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co">#Step 3: 验证结果</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="co"># 判断模拟实验的结果是否与假设检验一致</span></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="cf">if</span> (p_value_sim <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;通过模拟实验验证，两种方法的power存在显著差异。</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;通过模拟实验验证，两种方法的power没有显著差异。</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## 通过模拟实验验证，两种方法的power存在显著差异。</code></pre>
+</div>
+<div id="hw4" class="section level1">
+<h1>hw4</h1>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># 定义参数</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>null_hypotheses <span class="ot">&lt;-</span> <span class="dv">950</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>alt_hypotheses <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>num_simulations <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a><span class="co"># 定义函数来生成 p 值</span></span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>generate_p_values <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>  p_values_null <span class="ot">&lt;-</span> <span class="fu">runif</span>(null_hypotheses)  <span class="co"># 零假设的 p 值均匀分布</span></span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a>  p_values_alt <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(alt_hypotheses, <span class="fl">0.1</span>, <span class="dv">1</span>)  <span class="co"># 备择假设的 p 值为 beta 分布</span></span>
+<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(p_values_null, p_values_alt))  <span class="co"># 合并p值</span></span>
+<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a>}</span>
+<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a><span class="co"># Bonferroni 校正</span></span>
+<span id="cb34-16"><a href="#cb34-16" tabindex="-1"></a>bonferroni_correction <span class="ot">&lt;-</span> <span class="cf">function</span>(p_values, alpha) {</span>
+<span id="cb34-17"><a href="#cb34-17" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">p.adjust</span>(p_values, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="sc">&lt;=</span> alpha)</span>
+<span id="cb34-18"><a href="#cb34-18" tabindex="-1"></a>}</span>
+<span id="cb34-19"><a href="#cb34-19" tabindex="-1"></a></span>
+<span id="cb34-20"><a href="#cb34-20" tabindex="-1"></a><span class="co"># Benjamini-Hochberg 校正</span></span>
+<span id="cb34-21"><a href="#cb34-21" tabindex="-1"></a>bh_correction <span class="ot">&lt;-</span> <span class="cf">function</span>(p_values, alpha) {</span>
+<span id="cb34-22"><a href="#cb34-22" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">p.adjust</span>(p_values, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>) <span class="sc">&lt;=</span> alpha)</span>
+<span id="cb34-23"><a href="#cb34-23" tabindex="-1"></a>}</span>
+<span id="cb34-24"><a href="#cb34-24" tabindex="-1"></a></span>
+<span id="cb34-25"><a href="#cb34-25" tabindex="-1"></a><span class="co"># 模拟计算 FWER, FDR, TPR</span></span>
+<span id="cb34-26"><a href="#cb34-26" tabindex="-1"></a>calculate_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(method) {</span>
+<span id="cb34-27"><a href="#cb34-27" tabindex="-1"></a>  FWER <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb34-28"><a href="#cb34-28" tabindex="-1"></a>  FDR <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb34-29"><a href="#cb34-29" tabindex="-1"></a>  TPR <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb34-30"><a href="#cb34-30" tabindex="-1"></a>  </span>
+<span id="cb34-31"><a href="#cb34-31" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
+<span id="cb34-32"><a href="#cb34-32" tabindex="-1"></a>    p_values <span class="ot">&lt;-</span> <span class="fu">generate_p_values</span>()</span>
+<span id="cb34-33"><a href="#cb34-33" tabindex="-1"></a>    rejected <span class="ot">&lt;-</span> <span class="fu">method</span>(p_values, alpha)</span>
+<span id="cb34-34"><a href="#cb34-34" tabindex="-1"></a>    </span>
+<span id="cb34-35"><a href="#cb34-35" tabindex="-1"></a>    <span class="co"># 计算 FWER</span></span>
+<span id="cb34-36"><a href="#cb34-36" tabindex="-1"></a>    FWER <span class="ot">&lt;-</span> FWER <span class="sc">+</span> (<span class="fu">sum</span>(rejected[<span class="dv">1</span><span class="sc">:</span>null_hypotheses]) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb34-37"><a href="#cb34-37" tabindex="-1"></a>    </span>
+<span id="cb34-38"><a href="#cb34-38" tabindex="-1"></a>    <span class="co"># 计算 FDR 和 TPR</span></span>
+<span id="cb34-39"><a href="#cb34-39" tabindex="-1"></a>    false_discoveries <span class="ot">&lt;-</span> <span class="fu">sum</span>(rejected[<span class="dv">1</span><span class="sc">:</span>null_hypotheses])</span>
+<span id="cb34-40"><a href="#cb34-40" tabindex="-1"></a>    true_discoveries <span class="ot">&lt;-</span> <span class="fu">sum</span>(rejected[(null_hypotheses<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>N])</span>
+<span id="cb34-41"><a href="#cb34-41" tabindex="-1"></a>    total_discoveries <span class="ot">&lt;-</span> <span class="fu">sum</span>(rejected)</span>
+<span id="cb34-42"><a href="#cb34-42" tabindex="-1"></a>    </span>
+<span id="cb34-43"><a href="#cb34-43" tabindex="-1"></a>    <span class="cf">if</span> (total_discoveries <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb34-44"><a href="#cb34-44" tabindex="-1"></a>      FDR <span class="ot">&lt;-</span> FDR <span class="sc">+</span> false_discoveries <span class="sc">/</span> total_discoveries</span>
+<span id="cb34-45"><a href="#cb34-45" tabindex="-1"></a>    }</span>
+<span id="cb34-46"><a href="#cb34-46" tabindex="-1"></a>    </span>
+<span id="cb34-47"><a href="#cb34-47" tabindex="-1"></a>    TPR <span class="ot">&lt;-</span> TPR <span class="sc">+</span> true_discoveries <span class="sc">/</span> alt_hypotheses</span>
+<span id="cb34-48"><a href="#cb34-48" tabindex="-1"></a>  }</span>
+<span id="cb34-49"><a href="#cb34-49" tabindex="-1"></a>  </span>
+<span id="cb34-50"><a href="#cb34-50" tabindex="-1"></a>  FWER <span class="ot">&lt;-</span> FWER <span class="sc">/</span> num_simulations</span>
+<span id="cb34-51"><a href="#cb34-51" tabindex="-1"></a>  FDR <span class="ot">&lt;-</span> FDR <span class="sc">/</span> num_simulations</span>
+<span id="cb34-52"><a href="#cb34-52" tabindex="-1"></a>  TPR <span class="ot">&lt;-</span> TPR <span class="sc">/</span> num_simulations</span>
+<span id="cb34-53"><a href="#cb34-53" tabindex="-1"></a>  </span>
+<span id="cb34-54"><a href="#cb34-54" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(FWER, FDR, TPR))</span>
+<span id="cb34-55"><a href="#cb34-55" tabindex="-1"></a>}</span>
+<span id="cb34-56"><a href="#cb34-56" tabindex="-1"></a></span>
+<span id="cb34-57"><a href="#cb34-57" tabindex="-1"></a><span class="co"># 运行模拟</span></span>
+<span id="cb34-58"><a href="#cb34-58" tabindex="-1"></a>bonferroni_results <span class="ot">&lt;-</span> <span class="fu">calculate_metrics</span>(bonferroni_correction)</span>
+<span id="cb34-59"><a href="#cb34-59" tabindex="-1"></a>bh_results <span class="ot">&lt;-</span> <span class="fu">calculate_metrics</span>(bh_correction)</span>
+<span id="cb34-60"><a href="#cb34-60" tabindex="-1"></a></span>
+<span id="cb34-61"><a href="#cb34-61" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb34-62"><a href="#cb34-62" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-63"><a href="#cb34-63" tabindex="-1"></a>  <span class="at">Bonferroni_Correction =</span> bonferroni_results,</span>
+<span id="cb34-64"><a href="#cb34-64" tabindex="-1"></a>  <span class="at">BH_Correction =</span> bh_results</span>
+<span id="cb34-65"><a href="#cb34-65" tabindex="-1"></a>)</span>
+<span id="cb34-66"><a href="#cb34-66" tabindex="-1"></a><span class="fu">rownames</span>(results) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;FWER&quot;</span>, <span class="st">&quot;FDR&quot;</span>, <span class="st">&quot;TPR&quot;</span>)</span>
+<span id="cb34-67"><a href="#cb34-67" tabindex="-1"></a></span>
+<span id="cb34-68"><a href="#cb34-68" tabindex="-1"></a><span class="fu">print</span>(results)</span></code></pre></div>
+<pre><code>##      Bonferroni_Correction BH_Correction
+## FWER           0.087000000    0.93070000
+## FDR            0.004493094    0.09396945
+## TPR            0.396780000    0.56245600</code></pre>
+<div id="section" class="section level2">
+<h2>7.4</h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="co"># 生成样本</span></span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)  <span class="co"># 正态分布，样本均值为50，标准差为10</span></span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a><span class="co"># 定义统计量函数，计算样本均值</span></span>
+<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a>mean_stat <span class="ot">&lt;-</span> <span class="cf">function</span>(data, indices) {</span>
+<span id="cb36-9"><a href="#cb36-9" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(data[indices]))  <span class="co"># 返回重抽样样本的均值</span></span>
+<span id="cb36-10"><a href="#cb36-10" tabindex="-1"></a>}</span>
+<span id="cb36-11"><a href="#cb36-11" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" tabindex="-1"></a><span class="co"># 使用 bootstrap 方法，进行1000次重抽样，计算样本均值的置信区间</span></span>
+<span id="cb36-13"><a href="#cb36-13" tabindex="-1"></a>bootstrap_results <span class="ot">&lt;-</span> <span class="fu">boot</span>(data, <span class="at">statistic =</span> mean_stat, <span class="at">R =</span> <span class="dv">1000</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" tabindex="-1"></a><span class="co"># 计算 95% bootstrap 百分位置信区间</span></span>
+<span id="cb36-16"><a href="#cb36-16" tabindex="-1"></a>ci_percentile <span class="ot">&lt;-</span> <span class="fu">boot.ci</span>(bootstrap_results, <span class="at">type =</span> <span class="st">&quot;perc&quot;</span>)</span>
+<span id="cb36-17"><a href="#cb36-17" tabindex="-1"></a><span class="fu">print</span>(ci_percentile)</span></code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot.ci(boot.out = bootstrap_results, type = &quot;perc&quot;)
+## 
+## Intervals : 
+## Level     Percentile     
+## 95%   (49.18, 52.71 )  
+## Calculations and Intervals on Original Scale</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># 计算 95% 的标准正态置信区间</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>ci_normal <span class="ot">&lt;-</span> <span class="fu">boot.ci</span>(bootstrap_results, <span class="at">type =</span> <span class="st">&quot;norm&quot;</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="fu">print</span>(ci_normal)</span></code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot.ci(boot.out = bootstrap_results, type = &quot;norm&quot;)
+## 
+## Intervals : 
+## Level      Normal        
+## 95%   (49.14, 52.63 )  
+## Calculations and Intervals on Original Scale</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2>7.5</h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># 使用 BCa 方法计算 95% bootstrap 置信区间</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>ci_bca <span class="ot">&lt;-</span> <span class="fu">boot.ci</span>(bootstrap_results, <span class="at">type =</span> <span class="st">&quot;bca&quot;</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="fu">print</span>(ci_bca)</span></code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot.ci(boot.out = bootstrap_results, type = &quot;bca&quot;)
+## 
+## Intervals : 
+## Level       BCa          
+## 95%   (49.16, 52.68 )  
+## Calculations and Intervals on Original Scale</code></pre>
+</div>
+</div>
+<div id="hw5" class="section level1">
+<h1>hw5</h1>
+<p>7.8 题 - Jackknife 偏差和标准误估计：</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co"># 假设有一个主成分分析的例子</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>eigen_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.5</span>, <span class="fl">2.1</span>, <span class="fl">1.5</span>, <span class="fl">1.2</span>, <span class="fl">0.8</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>theta_hat <span class="ot">&lt;-</span> eigen_values[<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">sum</span>(eigen_values)</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a><span class="co"># Jackknife估计偏差和标准误差</span></span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>jackknife_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(eigen_values), <span class="cf">function</span>(i) {</span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a>  theta_i <span class="ot">&lt;-</span> eigen_values[<span class="sc">-</span>i][<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">sum</span>(eigen_values[<span class="sc">-</span>i])</span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>  <span class="fu">return</span>(theta_i)</span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a>})</span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a>bias <span class="ot">&lt;-</span> (<span class="fu">length</span>(eigen_values) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">mean</span>(jackknife_values) <span class="sc">-</span> theta_hat)</span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="fu">length</span>(eigen_values) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">mean</span>((jackknife_values <span class="sc">-</span> <span class="fu">mean</span>(jackknife_values))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb42-12"><a href="#cb42-12" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="#cb42-13" tabindex="-1"></a><span class="fu">list</span>(<span class="at">bias =</span> bias, <span class="at">se =</span> se)</span></code></pre></div>
+<pre><code>## $bias
+## [1] 0.2217393
+## 
+## $se
+## [1] 0.08290197</code></pre>
+<p>7.10 题 - 交叉验证和调整R²值：</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># 示例数据</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a><span class="co"># 使用cubic多项式拟合</span></span>
+<span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>model_cubic <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">3</span>))</span>
+<span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a><span class="co"># 使用leave-one-out交叉验证</span></span>
+<span id="cb44-10"><a href="#cb44-10" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb44-11"><a href="#cb44-11" tabindex="-1"></a>cv_error <span class="ot">&lt;-</span> <span class="fu">cv.glm</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(x, y), <span class="at">glmfit =</span> model_cubic, <span class="at">K =</span> <span class="fu">length</span>(x))</span>
+<span id="cb44-12"><a href="#cb44-12" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" tabindex="-1"></a><span class="co"># 调整R²值</span></span>
+<span id="cb44-14"><a href="#cb44-14" tabindex="-1"></a>adj_r2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_cubic)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb44-15"><a href="#cb44-15" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="#cb44-16" tabindex="-1"></a><span class="fu">list</span>(<span class="at">cv_error =</span> cv_error<span class="sc">$</span>delta[<span class="dv">1</span>], <span class="at">adj_r2 =</span> adj_r2)</span></code></pre></div>
+<pre><code>## $cv_error
+## [1] NaN
+## 
+## $adj_r2
+## [1] 0.9662272</code></pre>
+<p>8.1 题 - 置换检验：</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="co"># 假设有两个样本F和G</span></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>F <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">0</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a>G <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">0.5</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a><span class="co"># 计算原始统计量</span></span>
+<span id="cb46-6"><a href="#cb46-6" tabindex="-1"></a>original_stat <span class="ot">&lt;-</span> <span class="fu">mean</span>(F) <span class="sc">-</span> <span class="fu">mean</span>(G)</span>
+<span id="cb46-7"><a href="#cb46-7" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" tabindex="-1"></a><span class="co"># 置换检验</span></span>
+<span id="cb46-9"><a href="#cb46-9" tabindex="-1"></a>pooled <span class="ot">&lt;-</span> <span class="fu">c</span>(F, G)</span>
+<span id="cb46-10"><a href="#cb46-10" tabindex="-1"></a>perm_stats <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
+<span id="cb46-11"><a href="#cb46-11" tabindex="-1"></a>  permuted <span class="ot">&lt;-</span> <span class="fu">sample</span>(pooled)</span>
+<span id="cb46-12"><a href="#cb46-12" tabindex="-1"></a>  F_perm <span class="ot">&lt;-</span> permuted[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>]</span>
+<span id="cb46-13"><a href="#cb46-13" tabindex="-1"></a>  G_perm <span class="ot">&lt;-</span> permuted[<span class="dv">31</span><span class="sc">:</span><span class="dv">60</span>]</span>
+<span id="cb46-14"><a href="#cb46-14" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(F_perm) <span class="sc">-</span> <span class="fu">mean</span>(G_perm))</span>
+<span id="cb46-15"><a href="#cb46-15" tabindex="-1"></a>})</span>
+<span id="cb46-16"><a href="#cb46-16" tabindex="-1"></a></span>
+<span id="cb46-17"><a href="#cb46-17" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perm_stats) <span class="sc">&gt;=</span> <span class="fu">abs</span>(original_stat))</span>
+<span id="cb46-18"><a href="#cb46-18" tabindex="-1"></a>p_value</span></code></pre></div>
+<pre><code>## [1] 0.17</code></pre>
+<p>8.2 题 - 多样本置换检验：</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="co"># 假设有三个样本A, B, C</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">1</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">0.5</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">0</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a><span class="co"># 计算原始统计量，总体均值差异</span></span>
+<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a>original_stat <span class="ot">&lt;-</span> <span class="fu">var</span>(<span class="fu">c</span>(A, B, C))</span>
+<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a><span class="co"># 置换检验</span></span>
+<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a>pooled <span class="ot">&lt;-</span> <span class="fu">c</span>(A, B, C)</span>
+<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a>perm_stats <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
+<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>  permuted <span class="ot">&lt;-</span> <span class="fu">sample</span>(pooled)</span>
+<span id="cb48-13"><a href="#cb48-13" tabindex="-1"></a>  A_perm <span class="ot">&lt;-</span> permuted[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>]</span>
+<span id="cb48-14"><a href="#cb48-14" tabindex="-1"></a>  B_perm <span class="ot">&lt;-</span> permuted[<span class="dv">31</span><span class="sc">:</span><span class="dv">60</span>]</span>
+<span id="cb48-15"><a href="#cb48-15" tabindex="-1"></a>  C_perm <span class="ot">&lt;-</span> permuted[<span class="dv">61</span><span class="sc">:</span><span class="dv">90</span>]</span>
+<span id="cb48-16"><a href="#cb48-16" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">var</span>(<span class="fu">c</span>(A_perm, B_perm, C_perm)))</span>
+<span id="cb48-17"><a href="#cb48-17" tabindex="-1"></a>})</span>
+<span id="cb48-18"><a href="#cb48-18" tabindex="-1"></a></span>
+<span id="cb48-19"><a href="#cb48-19" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(perm_stats <span class="sc">&gt;=</span> original_stat)</span>
+<span id="cb48-20"><a href="#cb48-20" tabindex="-1"></a>p_value</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="hw6" class="section level1">
+<h1>hw6</h1>
+<p>练习 9.3：使用 Metropolis-Hastings 采样器生成标准 Cauchy
+分布的样本</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="co"># 加载必要的包</span></span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb50-5"><a href="#cb50-5" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span>       <span class="co"># Beta 分布的参数 a</span></span>
+<span id="cb50-6"><a href="#cb50-6" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span>       <span class="co"># Beta 分布的参数 b</span></span>
+<span id="cb50-7"><a href="#cb50-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>      <span class="co"># 最大可能的 x 值</span></span>
+<span id="cb50-8"><a href="#cb50-8" tabindex="-1"></a>n_samples <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># 每条链的样本数</span></span>
+<span id="cb50-9"><a href="#cb50-9" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" tabindex="-1"></a><span class="co"># Gibbs 采样函数</span></span>
+<span id="cb50-11"><a href="#cb50-11" tabindex="-1"></a>gibbs_sampler <span class="ot">&lt;-</span> <span class="cf">function</span>(n_samples, n, a, b) {</span>
+<span id="cb50-12"><a href="#cb50-12" tabindex="-1"></a>  x_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb50-13"><a href="#cb50-13" tabindex="-1"></a>  y_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb50-14"><a href="#cb50-14" tabindex="-1"></a>  </span>
+<span id="cb50-15"><a href="#cb50-15" tabindex="-1"></a>  <span class="co"># 初始化值</span></span>
+<span id="cb50-16"><a href="#cb50-16" tabindex="-1"></a>  x_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.5</span>)</span>
+<span id="cb50-17"><a href="#cb50-17" tabindex="-1"></a>  y_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[<span class="dv">1</span>] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[<span class="dv">1</span>] <span class="sc">+</span> b)</span>
+<span id="cb50-18"><a href="#cb50-18" tabindex="-1"></a>  </span>
+<span id="cb50-19"><a href="#cb50-19" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n_samples) {</span>
+<span id="cb50-20"><a href="#cb50-20" tabindex="-1"></a>    <span class="co"># 使用条件分布从 x | y 采样</span></span>
+<span id="cb50-21"><a href="#cb50-21" tabindex="-1"></a>    x_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y_samples[i <span class="sc">-</span> <span class="dv">1</span>])</span>
+<span id="cb50-22"><a href="#cb50-22" tabindex="-1"></a>    <span class="co"># 使用条件分布从 y | x 采样</span></span>
+<span id="cb50-23"><a href="#cb50-23" tabindex="-1"></a>    y_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[i] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[i] <span class="sc">+</span> b)</span>
+<span id="cb50-24"><a href="#cb50-24" tabindex="-1"></a>  }</span>
+<span id="cb50-25"><a href="#cb50-25" tabindex="-1"></a>  </span>
+<span id="cb50-26"><a href="#cb50-26" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">x =</span> x_samples, <span class="at">y =</span> y_samples))</span>
+<span id="cb50-27"><a href="#cb50-27" tabindex="-1"></a>}</span>
+<span id="cb50-28"><a href="#cb50-28" tabindex="-1"></a></span>
+<span id="cb50-29"><a href="#cb50-29" tabindex="-1"></a><span class="co"># 生成两条独立的链</span></span>
+<span id="cb50-30"><a href="#cb50-30" tabindex="-1"></a>chain1 <span class="ot">&lt;-</span> <span class="fu">gibbs_sampler</span>(n_samples, n, a, b)</span>
+<span id="cb50-31"><a href="#cb50-31" tabindex="-1"></a>chain2 <span class="ot">&lt;-</span> <span class="fu">gibbs_sampler</span>(n_samples, n, a, b)</span>
+<span id="cb50-32"><a href="#cb50-32" tabindex="-1"></a></span>
+<span id="cb50-33"><a href="#cb50-33" tabindex="-1"></a><span class="co"># 将链转化为 mcmc 对象</span></span>
+<span id="cb50-34"><a href="#cb50-34" tabindex="-1"></a>x_chain1 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain1<span class="sc">$</span>x)</span>
+<span id="cb50-35"><a href="#cb50-35" tabindex="-1"></a>y_chain1 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain1<span class="sc">$</span>y)</span>
+<span id="cb50-36"><a href="#cb50-36" tabindex="-1"></a>x_chain2 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain2<span class="sc">$</span>x)</span>
+<span id="cb50-37"><a href="#cb50-37" tabindex="-1"></a>y_chain2 <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(chain2<span class="sc">$</span>y)</span>
+<span id="cb50-38"><a href="#cb50-38" tabindex="-1"></a></span>
+<span id="cb50-39"><a href="#cb50-39" tabindex="-1"></a><span class="co"># 结合链并执行 Gelman-Rubin 收敛监测</span></span>
+<span id="cb50-40"><a href="#cb50-40" tabindex="-1"></a>chains_x <span class="ot">&lt;-</span> <span class="fu">mcmc.list</span>(x_chain1, x_chain2)</span>
+<span id="cb50-41"><a href="#cb50-41" tabindex="-1"></a>chains_y <span class="ot">&lt;-</span> <span class="fu">mcmc.list</span>(y_chain1, y_chain2)</span>
+<span id="cb50-42"><a href="#cb50-42" tabindex="-1"></a>gelman_diag_x <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(chains_x)</span>
+<span id="cb50-43"><a href="#cb50-43" tabindex="-1"></a>gelman_diag_y <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(chains_y)</span>
+<span id="cb50-44"><a href="#cb50-44" tabindex="-1"></a></span>
+<span id="cb50-45"><a href="#cb50-45" tabindex="-1"></a><span class="co"># 输出 Gelman-Rubin 诊断结果</span></span>
+<span id="cb50-46"><a href="#cb50-46" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;x 链的 Gelman-Rubin 诊断结果：&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;x 链的 Gelman-Rubin 诊断结果：&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">print</span>(gelman_diag_x)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]          1       1.01</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;y 链的 Gelman-Rubin 诊断结果：&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;y 链的 Gelman-Rubin 诊断结果：&quot;</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">print</span>(gelman_diag_y)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]          1       1.01</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="co"># 检查收敛性</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">all</span>(gelman_diag_x<span class="sc">$</span>psrf <span class="sc">&lt;</span> <span class="fl">1.2</span>) <span class="sc">&amp;&amp;</span> <span class="fu">all</span>(gelman_diag_y<span class="sc">$</span>psrf <span class="sc">&lt;</span> <span class="fl">1.2</span>)) {</span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;链已收敛</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;链未完全收敛，请增加样本数</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## 链已收敛</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="co"># 可视化生成的样本</span></span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a><span class="fu">plot</span>(chain1<span class="sc">$</span>x, chain1<span class="sc">$</span>y, <span class="at">main =</span> <span class="st">&quot;Gibbs Sampler Chain 1&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a><span class="fu">plot</span>(chain2<span class="sc">$</span>x, chain2<span class="sc">$</span>y, <span class="at">main =</span> <span class="st">&quot;Gibbs Sampler Chain 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- -->
+练习 9.8：使用 Gibbs 采样器生成双变量密度的样本</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="co"># 定义参数</span></span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb61-3"><a href="#cb61-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb61-4"><a href="#cb61-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb61-5"><a href="#cb61-5" tabindex="-1"></a>n_samples <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb61-6"><a href="#cb61-6" tabindex="-1"></a></span>
+<span id="cb61-7"><a href="#cb61-7" tabindex="-1"></a><span class="co"># Gibbs 采样函数</span></span>
+<span id="cb61-8"><a href="#cb61-8" tabindex="-1"></a>gibbs_sampler <span class="ot">&lt;-</span> <span class="cf">function</span>(n_samples, n, a, b) {</span>
+<span id="cb61-9"><a href="#cb61-9" tabindex="-1"></a>  x_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb61-10"><a href="#cb61-10" tabindex="-1"></a>  y_samples <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_samples)</span>
+<span id="cb61-11"><a href="#cb61-11" tabindex="-1"></a>  </span>
+<span id="cb61-12"><a href="#cb61-12" tabindex="-1"></a>  <span class="co"># 初始化值</span></span>
+<span id="cb61-13"><a href="#cb61-13" tabindex="-1"></a>  x_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.5</span>)</span>
+<span id="cb61-14"><a href="#cb61-14" tabindex="-1"></a>  y_samples[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[<span class="dv">1</span>] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[<span class="dv">1</span>] <span class="sc">+</span> b)</span>
+<span id="cb61-15"><a href="#cb61-15" tabindex="-1"></a>  </span>
+<span id="cb61-16"><a href="#cb61-16" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n_samples) {</span>
+<span id="cb61-17"><a href="#cb61-17" tabindex="-1"></a>    x_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y_samples[i <span class="sc">-</span> <span class="dv">1</span>])</span>
+<span id="cb61-18"><a href="#cb61-18" tabindex="-1"></a>    y_samples[i] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x_samples[i] <span class="sc">+</span> a, n <span class="sc">-</span> x_samples[i] <span class="sc">+</span> b)</span>
+<span id="cb61-19"><a href="#cb61-19" tabindex="-1"></a>  }</span>
+<span id="cb61-20"><a href="#cb61-20" tabindex="-1"></a>  </span>
+<span id="cb61-21"><a href="#cb61-21" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">x =</span> x_samples, <span class="at">y =</span> y_samples))</span>
+<span id="cb61-22"><a href="#cb61-22" tabindex="-1"></a>}</span>
+<span id="cb61-23"><a href="#cb61-23" tabindex="-1"></a></span>
+<span id="cb61-24"><a href="#cb61-24" tabindex="-1"></a><span class="co"># 生成样本</span></span>
+<span id="cb61-25"><a href="#cb61-25" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">gibbs_sampler</span>(n_samples, n, a, b)</span>
+<span id="cb61-26"><a href="#cb61-26" tabindex="-1"></a></span>
+<span id="cb61-27"><a href="#cb61-27" tabindex="-1"></a><span class="co"># Gelman-Rubin 收敛监控</span></span>
+<span id="cb61-28"><a href="#cb61-28" tabindex="-1"></a>x_chain <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(samples<span class="sc">$</span>x)</span>
+<span id="cb61-29"><a href="#cb61-29" tabindex="-1"></a>y_chain <span class="ot">&lt;-</span> <span class="fu">mcmc</span>(samples<span class="sc">$</span>y)</span>
+<span id="cb61-30"><a href="#cb61-30" tabindex="-1"></a>chains <span class="ot">&lt;-</span> <span class="fu">mcmc.list</span>(x_chain, y_chain)</span>
+<span id="cb61-31"><a href="#cb61-31" tabindex="-1"></a>gelman_diag <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(chains)</span>
+<span id="cb61-32"><a href="#cb61-32" tabindex="-1"></a><span class="fu">print</span>(gelman_diag)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]       3.11       16.9</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="co"># 绘制样本</span></span>
+<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a><span class="fu">plot</span>(samples<span class="sc">$</span>x, samples<span class="sc">$</span>y, <span class="at">main =</span> <span class="st">&quot;Gibbs Sampler for Bivariate Density&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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lfdigIeB+gak73yso1XQz4GNbQ5RelnFAWnr8bO394t46Rt9Rxh5GKhvQBiAUuoCFtc/RgE9/Tp94VOANuK2vJuX56FT74DKKqTvK8oqxNOlgXgftLn89yrZgyWbmHYrz0OnvgHp2ABNPHFbTTWAOKBCNRIdJlHTiQ64pJLlYaVjANok+mh1yzYB6AJcfRWaT8sY/ikAygjg1G3Z8vQEoNJu/IHfoH+ZQhPDXWCR7EPM5pQIAV2teFcNomMKnTQcRIv4PM4qHkF6f0n86uvKx//VYQLDPJqGxTuISomZtOqivE0mzVNxH3TkiWLZSlKzHN2Ekv6llhobsFBZp9JNaKU9DMTFKhABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQFNHZDaCfaywnuKBtPUAandUuln8QysqQNSW6P/kL3baQBNHtBunfxhx+CaPqD4xvlRNHlA2/s/5u7YHUSTB1Rc/5LY1Tq8pg5I7YzO3hU/hKYOaF1ujD5iNz11QEcXAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEB/R/Ez8kRilktoQAAAABJRU5ErkJggg==" /><!-- --></p>
+</div>
+<div id="hw7" class="section level1">
+<h1>hw7</h1>
+<p>11.3 (a) 编写函数计算第k项</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="fu">library</span>(gsl)  <span class="co"># 用于Gamma函数</span></span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a><span class="co"># 定义函数来计算第 k 项</span></span>
+<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a>compute_term <span class="ot">&lt;-</span> <span class="cf">function</span>(k, a, d) {</span>
+<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a>  norm_a <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(a<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb64-6"><a href="#cb64-6" tabindex="-1"></a>  term <span class="ot">&lt;-</span> ((<span class="sc">-</span><span class="dv">1</span>)<span class="sc">^</span>k <span class="sc">/</span> (<span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="dv">2</span><span class="sc">^</span>k)) <span class="sc">*</span> (norm_a<span class="sc">^</span>(<span class="dv">2</span> <span class="sc">*</span> k <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">/</span> ((<span class="dv">2</span> <span class="sc">*</span> k <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">2</span> <span class="sc">*</span> k <span class="sc">+</span> <span class="dv">2</span>))) <span class="sc">*</span></span>
+<span id="cb64-7"><a href="#cb64-7" tabindex="-1"></a>          (<span class="fu">gamma</span>((d <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="fu">gamma</span>(k <span class="sc">+</span> <span class="fl">1.5</span>) <span class="sc">/</span> <span class="fu">gamma</span>(k <span class="sc">+</span> d <span class="sc">/</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb64-8"><a href="#cb64-8" tabindex="-1"></a>  <span class="fu">return</span>(term)</span>
+<span id="cb64-9"><a href="#cb64-9" tabindex="-1"></a>}</span>
+<span id="cb64-10"><a href="#cb64-10" tabindex="-1"></a></span>
+<span id="cb64-11"><a href="#cb64-11" tabindex="-1"></a><span class="co"># 测试计算第 k 项</span></span>
+<span id="cb64-12"><a href="#cb64-12" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># 可以改变 k 值来测试不同项</span></span>
+<span id="cb64-13"><a href="#cb64-13" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)  <span class="co"># 向量 a</span></span>
+<span id="cb64-14"><a href="#cb64-14" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">length</span>(a)  <span class="co"># 维度 d</span></span>
+<span id="cb64-15"><a href="#cb64-15" tabindex="-1"></a><span class="fu">compute_term</span>(k, a, d)</span></code></pre></div>
+<pre><code>## [1] 1.963495</code></pre>
+<p>11.3 (b) 编写函数计算整个和</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>compute_sum <span class="ot">&lt;-</span> <span class="cf">function</span>(a, d, <span class="at">k_max =</span> <span class="dv">100</span>) {</span>
+<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a>  sum_result <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span>k_max) {</span>
+<span id="cb66-4"><a href="#cb66-4" tabindex="-1"></a>    sum_result <span class="ot">&lt;-</span> sum_result <span class="sc">+</span> <span class="fu">compute_term</span>(k, a, d)</span>
+<span id="cb66-5"><a href="#cb66-5" tabindex="-1"></a>  }</span>
+<span id="cb66-6"><a href="#cb66-6" tabindex="-1"></a>  <span class="fu">return</span>(sum_result)</span>
+<span id="cb66-7"><a href="#cb66-7" tabindex="-1"></a>}</span>
+<span id="cb66-8"><a href="#cb66-8" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="#cb66-9" tabindex="-1"></a><span class="co"># 测试计算和</span></span>
+<span id="cb66-10"><a href="#cb66-10" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb66-11"><a href="#cb66-11" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">length</span>(a)</span>
+<span id="cb66-12"><a href="#cb66-12" tabindex="-1"></a><span class="fu">compute_sum</span>(a, d)</span></code></pre></div>
+<pre><code>## [1] 1.532164</code></pre>
+<p>11.3 (c)</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="co"># 使用已定义的函数 compute_sum 计算在 a = (1, 2)^T 的情况下的级数和</span></span>
+<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">length</span>(a)</span>
+<span id="cb68-4"><a href="#cb68-4" tabindex="-1"></a>sum_result <span class="ot">&lt;-</span> <span class="fu">compute_sum</span>(a, d)</span>
+<span id="cb68-5"><a href="#cb68-5" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="#cb68-6" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb68-7"><a href="#cb68-7" tabindex="-1"></a>sum_result</span></code></pre></div>
+<pre><code>## [1] 1.532164</code></pre>
+<p>11.5 编写求解方程的函数</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="fu">library</span>(pracma)  <span class="co"># 用于数值积分</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;pracma&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:gsl&#39;:
+## 
+##     Ci, erf, erfc, eta, expint_E1, expint_Ei, fact, hypot, psi, Si,
+##     sinc, zeta</code></pre>
+<pre><code>## The following object is masked from &#39;package:boot&#39;:
+## 
+##     logit</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="fu">library</span>(gsl)     <span class="co"># 用于Gamma函数</span></span>
+<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a></span>
+<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a><span class="co"># 定义函数来计算积分</span></span>
+<span id="cb74-4"><a href="#cb74-4" tabindex="-1"></a>compute_integral <span class="ot">&lt;-</span> <span class="cf">function</span>(upper_limit, k, exponent) {</span>
+<span id="cb74-5"><a href="#cb74-5" tabindex="-1"></a>  integrand <span class="ot">&lt;-</span> <span class="cf">function</span>(u) {</span>
+<span id="cb74-6"><a href="#cb74-6" tabindex="-1"></a>    (<span class="dv">1</span> <span class="sc">+</span> u<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> k)<span class="sc">^</span>(<span class="sc">-</span>exponent)</span>
+<span id="cb74-7"><a href="#cb74-7" tabindex="-1"></a>  }</span>
+<span id="cb74-8"><a href="#cb74-8" tabindex="-1"></a>  integral_result <span class="ot">&lt;-</span> <span class="fu">integrate</span>(integrand, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> upper_limit)<span class="sc">$</span>value</span>
+<span id="cb74-9"><a href="#cb74-9" tabindex="-1"></a>  <span class="fu">return</span>(integral_result)</span>
+<span id="cb74-10"><a href="#cb74-10" tabindex="-1"></a>}</span>
+<span id="cb74-11"><a href="#cb74-11" tabindex="-1"></a><span class="co"># 定义函数来计算 c_k 值</span></span>
+<span id="cb74-12"><a href="#cb74-12" tabindex="-1"></a>compute_ck <span class="ot">&lt;-</span> <span class="cf">function</span>(k, a) {</span>
+<span id="cb74-13"><a href="#cb74-13" tabindex="-1"></a>  c_k <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((a<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> k) <span class="sc">/</span> (k <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb74-14"><a href="#cb74-14" tabindex="-1"></a>  <span class="fu">return</span>(c_k)</span>
+<span id="cb74-15"><a href="#cb74-15" tabindex="-1"></a>}</span>
+<span id="cb74-16"><a href="#cb74-16" tabindex="-1"></a></span>
+<span id="cb74-17"><a href="#cb74-17" tabindex="-1"></a>compute_ck_minus_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(k, a) {</span>
+<span id="cb74-18"><a href="#cb74-18" tabindex="-1"></a>  c_k_minus_1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((a<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (k <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb74-19"><a href="#cb74-19" tabindex="-1"></a>  <span class="fu">return</span>(c_k_minus_1)</span>
+<span id="cb74-20"><a href="#cb74-20" tabindex="-1"></a>}</span>
+<span id="cb74-21"><a href="#cb74-21" tabindex="-1"></a><span class="co"># 定义详细的 solve_equation_details 函数</span></span>
+<span id="cb74-22"><a href="#cb74-22" tabindex="-1"></a>solve_equation_details <span class="ot">&lt;-</span> <span class="cf">function</span>(k, a) {</span>
+<span id="cb74-23"><a href="#cb74-23" tabindex="-1"></a>  <span class="co"># 计算 c_{k-1} 和 c_k</span></span>
+<span id="cb74-24"><a href="#cb74-24" tabindex="-1"></a>  c_k_minus_1 <span class="ot">&lt;-</span> <span class="fu">compute_ck_minus_1</span>(k, a)</span>
+<span id="cb74-25"><a href="#cb74-25" tabindex="-1"></a>  c_k <span class="ot">&lt;-</span> <span class="fu">compute_ck</span>(k, a)</span>
+<span id="cb74-26"><a href="#cb74-26" tabindex="-1"></a>  </span>
+<span id="cb74-27"><a href="#cb74-27" tabindex="-1"></a>  <span class="co"># 计算方程左侧的积分和常数项</span></span>
+<span id="cb74-28"><a href="#cb74-28" tabindex="-1"></a>  left_term_constant <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">gamma</span>(k <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">/</span> (<span class="fu">sqrt</span>(pi <span class="sc">*</span> (k <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">*</span> <span class="fu">gamma</span>((k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb74-29"><a href="#cb74-29" tabindex="-1"></a>  left_term_integral <span class="ot">&lt;-</span> <span class="fu">compute_integral</span>(c_k_minus_1, k <span class="sc">-</span> <span class="dv">1</span>, k <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb74-30"><a href="#cb74-30" tabindex="-1"></a>  left_term <span class="ot">&lt;-</span> left_term_constant <span class="sc">*</span> left_term_integral</span>
+<span id="cb74-31"><a href="#cb74-31" tabindex="-1"></a>  </span>
+<span id="cb74-32"><a href="#cb74-32" tabindex="-1"></a>  <span class="co"># 计算方程右侧的积分和常数项</span></span>
+<span id="cb74-33"><a href="#cb74-33" tabindex="-1"></a>  right_term_constant <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">gamma</span>((k <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>)) <span class="sc">/</span> (<span class="fu">sqrt</span>(pi <span class="sc">*</span> k) <span class="sc">*</span> <span class="fu">gamma</span>(k <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb74-34"><a href="#cb74-34" tabindex="-1"></a>  right_term_integral <span class="ot">&lt;-</span> <span class="fu">compute_integral</span>(c_k, k, (k <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb74-35"><a href="#cb74-35" tabindex="-1"></a>  right_term <span class="ot">&lt;-</span> right_term_constant <span class="sc">*</span> right_term_integral</span>
+<span id="cb74-36"><a href="#cb74-36" tabindex="-1"></a>  </span>
+<span id="cb74-37"><a href="#cb74-37" tabindex="-1"></a>  <span class="co"># 返回左右两侧的值以及差值</span></span>
+<span id="cb74-38"><a href="#cb74-38" tabindex="-1"></a>  difference <span class="ot">&lt;-</span> left_term <span class="sc">-</span> right_term</span>
+<span id="cb74-39"><a href="#cb74-39" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">left_term =</span> left_term, <span class="at">right_term =</span> right_term, <span class="at">difference =</span> difference))</span>
+<span id="cb74-40"><a href="#cb74-40" tabindex="-1"></a>}</span></code></pre></div>
+<p>与11.4比较</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="co"># 计算11.4中的曲线阈值</span></span>
+<span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a>compute_threshold_11_4 <span class="ot">&lt;-</span> <span class="cf">function</span>(k, a) {</span>
+<span id="cb75-3"><a href="#cb75-3" tabindex="-1"></a>  threshold_k_minus_1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(a<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> (k <span class="sc">-</span> a<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb75-4"><a href="#cb75-4" tabindex="-1"></a>  threshold_k <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(a<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> k <span class="sc">/</span> (k <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb75-5"><a href="#cb75-5" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">threshold_k_minus_1 =</span> threshold_k_minus_1, <span class="at">threshold_k =</span> threshold_k))</span>
+<span id="cb75-6"><a href="#cb75-6" tabindex="-1"></a>}</span>
+<span id="cb75-7"><a href="#cb75-7" tabindex="-1"></a><span class="co"># 比较11.4和11.5的函数</span></span>
+<span id="cb75-8"><a href="#cb75-8" tabindex="-1"></a>compare_11_4_and_11_5 <span class="ot">&lt;-</span> <span class="cf">function</span>(k_values, a) {</span>
+<span id="cb75-9"><a href="#cb75-9" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb75-10"><a href="#cb75-10" tabindex="-1"></a>    <span class="at">k =</span> k_values,</span>
+<span id="cb75-11"><a href="#cb75-11" tabindex="-1"></a>    <span class="at">threshold_k_minus_1 =</span> <span class="cn">NA</span>,</span>
+<span id="cb75-12"><a href="#cb75-12" tabindex="-1"></a>    <span class="at">threshold_k =</span> <span class="cn">NA</span>,</span>
+<span id="cb75-13"><a href="#cb75-13" tabindex="-1"></a>    <span class="at">left_term =</span> <span class="cn">NA</span>,</span>
+<span id="cb75-14"><a href="#cb75-14" tabindex="-1"></a>    <span class="at">right_term =</span> <span class="cn">NA</span>,</span>
+<span id="cb75-15"><a href="#cb75-15" tabindex="-1"></a>    <span class="at">difference =</span> <span class="cn">NA</span></span>
+<span id="cb75-16"><a href="#cb75-16" tabindex="-1"></a>  )</span>
+<span id="cb75-17"><a href="#cb75-17" tabindex="-1"></a>  </span>
+<span id="cb75-18"><a href="#cb75-18" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(k_values)) {</span>
+<span id="cb75-19"><a href="#cb75-19" tabindex="-1"></a>    k <span class="ot">&lt;-</span> k_values[i]</span>
+<span id="cb75-20"><a href="#cb75-20" tabindex="-1"></a>    </span>
+<span id="cb75-21"><a href="#cb75-21" tabindex="-1"></a>    <span class="co"># 计算11.4中的阈值</span></span>
+<span id="cb75-22"><a href="#cb75-22" tabindex="-1"></a>    thresholds <span class="ot">&lt;-</span> <span class="fu">compute_threshold_11_4</span>(k, a)</span>
+<span id="cb75-23"><a href="#cb75-23" tabindex="-1"></a>    results<span class="sc">$</span>threshold_k_minus_1[i] <span class="ot">&lt;-</span> thresholds<span class="sc">$</span>threshold_k_minus_1</span>
+<span id="cb75-24"><a href="#cb75-24" tabindex="-1"></a>    results<span class="sc">$</span>threshold_k[i] <span class="ot">&lt;-</span> thresholds<span class="sc">$</span>threshold_k</span>
+<span id="cb75-25"><a href="#cb75-25" tabindex="-1"></a>    </span>
+<span id="cb75-26"><a href="#cb75-26" tabindex="-1"></a>    <span class="co"># 计算11.5中的方程解</span></span>
+<span id="cb75-27"><a href="#cb75-27" tabindex="-1"></a>    equation_result <span class="ot">&lt;-</span> <span class="fu">solve_equation_details</span>(k, a)</span>
+<span id="cb75-28"><a href="#cb75-28" tabindex="-1"></a>    results<span class="sc">$</span>left_term[i] <span class="ot">&lt;-</span> equation_result<span class="sc">$</span>left_term</span>
+<span id="cb75-29"><a href="#cb75-29" tabindex="-1"></a>    results<span class="sc">$</span>right_term[i] <span class="ot">&lt;-</span> equation_result<span class="sc">$</span>right_term</span>
+<span id="cb75-30"><a href="#cb75-30" tabindex="-1"></a>    results<span class="sc">$</span>difference[i] <span class="ot">&lt;-</span> equation_result<span class="sc">$</span>difference</span>
+<span id="cb75-31"><a href="#cb75-31" tabindex="-1"></a>  }</span>
+<span id="cb75-32"><a href="#cb75-32" tabindex="-1"></a>  </span>
+<span id="cb75-33"><a href="#cb75-33" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
+<span id="cb75-34"><a href="#cb75-34" tabindex="-1"></a>}</span>
+<span id="cb75-35"><a href="#cb75-35" tabindex="-1"></a><span class="co"># 测试比较</span></span>
+<span id="cb75-36"><a href="#cb75-36" tabindex="-1"></a>k_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">25</span>, <span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">1000</span>)</span>
+<span id="cb75-37"><a href="#cb75-37" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb75-38"><a href="#cb75-38" tabindex="-1"></a>comparison_results <span class="ot">&lt;-</span> <span class="fu">compare_11_4_and_11_5</span>(k_values, a)</span>
+<span id="cb75-39"><a href="#cb75-39" tabindex="-1"></a></span>
+<span id="cb75-40"><a href="#cb75-40" tabindex="-1"></a><span class="co"># 输出比较结果</span></span>
+<span id="cb75-41"><a href="#cb75-41" tabindex="-1"></a><span class="fu">print</span>(comparison_results)</span></code></pre></div>
+<pre><code>##      k threshold_k_minus_1 threshold_k left_term right_term  difference
+## 1    4           0.4472136   0.4588315 0.3623819  0.3298200 0.032561882
+## 2   25           0.4923660   0.4926646 0.3801907  0.3734512 0.006739568
+## 3  100           0.4981168   0.4981355 0.3822590  0.3805177 0.001741379
+## 4  500           0.4996247   0.4996254       NaN        NaN         NaN
+## 5 1000           0.4998124   0.4998126       NaN        NaN         NaN</code></pre>
+<p>使用 E-M 算法估计参数 λ</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="co"># 初始化观测数据</span></span>
+<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.54</span>, <span class="fl">0.48</span>, <span class="fl">0.33</span>, <span class="fl">0.43</span>, <span class="fl">1.00</span>, <span class="fl">1.00</span>, <span class="fl">0.91</span>, <span class="fl">1.00</span>, <span class="fl">0.21</span>, <span class="fl">0.85</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fl">1.0</span>  <span class="co"># 右删失阈值</span></span>
+<span id="cb77-4"><a href="#cb77-4" tabindex="-1"></a></span>
+<span id="cb77-5"><a href="#cb77-5" tabindex="-1"></a><span class="co"># 分离被删失的数据和非删失的数据</span></span>
+<span id="cb77-6"><a href="#cb77-6" tabindex="-1"></a>Y_observed <span class="ot">&lt;-</span> Y[Y <span class="sc">&lt;</span> tau]</span>
+<span id="cb77-7"><a href="#cb77-7" tabindex="-1"></a>Y_censored <span class="ot">&lt;-</span> Y[Y <span class="sc">==</span> tau]</span>
+<span id="cb77-8"><a href="#cb77-8" tabindex="-1"></a></span>
+<span id="cb77-9"><a href="#cb77-9" tabindex="-1"></a><span class="co"># 初始化参数 lambda</span></span>
+<span id="cb77-10"><a href="#cb77-10" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">1.0</span>  <span class="co"># 可以选择一个合理的初始值</span></span>
+<span id="cb77-11"><a href="#cb77-11" tabindex="-1"></a>tolerance <span class="ot">&lt;-</span> <span class="fl">1e-6</span>  <span class="co"># 收敛条件</span></span>
+<span id="cb77-12"><a href="#cb77-12" tabindex="-1"></a>max_iter <span class="ot">&lt;-</span> <span class="dv">1000</span>  <span class="co"># 最大迭代次数</span></span>
+<span id="cb77-13"><a href="#cb77-13" tabindex="-1"></a></span>
+<span id="cb77-14"><a href="#cb77-14" tabindex="-1"></a><span class="co"># E-M 算法</span></span>
+<span id="cb77-15"><a href="#cb77-15" tabindex="-1"></a><span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>max_iter) {</span>
+<span id="cb77-16"><a href="#cb77-16" tabindex="-1"></a>  <span class="co"># 计算 E 步中的期望</span></span>
+<span id="cb77-17"><a href="#cb77-17" tabindex="-1"></a>  expected_censored <span class="ot">&lt;-</span> tau <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> lambda</span>
+<span id="cb77-18"><a href="#cb77-18" tabindex="-1"></a>  </span>
+<span id="cb77-19"><a href="#cb77-19" tabindex="-1"></a>  <span class="co"># M 步：更新 lambda</span></span>
+<span id="cb77-20"><a href="#cb77-20" tabindex="-1"></a>  lambda_new <span class="ot">&lt;-</span> <span class="fu">length</span>(Y) <span class="sc">/</span> (<span class="fu">sum</span>(Y_observed) <span class="sc">+</span> <span class="fu">length</span>(Y_censored) <span class="sc">*</span> expected_censored)</span>
+<span id="cb77-21"><a href="#cb77-21" tabindex="-1"></a>  </span>
+<span id="cb77-22"><a href="#cb77-22" tabindex="-1"></a>  <span class="co"># 检查收敛</span></span>
+<span id="cb77-23"><a href="#cb77-23" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">abs</span>(lambda_new <span class="sc">-</span> lambda) <span class="sc">&lt;</span> tolerance) {</span>
+<span id="cb77-24"><a href="#cb77-24" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb77-25"><a href="#cb77-25" tabindex="-1"></a>  }</span>
+<span id="cb77-26"><a href="#cb77-26" tabindex="-1"></a>  </span>
+<span id="cb77-27"><a href="#cb77-27" tabindex="-1"></a>  <span class="co"># 更新 lambda</span></span>
+<span id="cb77-28"><a href="#cb77-28" tabindex="-1"></a>  lambda <span class="ot">&lt;-</span> lambda_new</span>
+<span id="cb77-29"><a href="#cb77-29" tabindex="-1"></a>}</span>
+<span id="cb77-30"><a href="#cb77-30" tabindex="-1"></a></span>
+<span id="cb77-31"><a href="#cb77-31" tabindex="-1"></a><span class="co"># 输出最终的 lambda 值</span></span>
+<span id="cb77-32"><a href="#cb77-32" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;E-M 算法估计的 lambda:&quot;</span>, lambda, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## E-M 算法估计的 lambda: 1.037036</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="co"># 与 MLE 进行比较</span></span>
+<span id="cb79-2"><a href="#cb79-2" tabindex="-1"></a>lambda_mle <span class="ot">&lt;-</span> <span class="fu">length</span>(Y) <span class="sc">/</span> <span class="fu">sum</span>(Y)</span>
+<span id="cb79-3"><a href="#cb79-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;MLE 估计的 lambda:&quot;</span>, lambda_mle, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## MLE 估计的 lambda: 1.481481</code></pre>
+</div>
+<div id="hw8" class="section level1">
+<h1>hw8</h1>
+<p>11.7</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a><span class="co"># 如果尚未安装 lpSolve 包，请先安装</span></span>
+<span id="cb81-2"><a href="#cb81-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;lpSolve&quot;</span>)) {</span>
+<span id="cb81-3"><a href="#cb81-3" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;lpSolve&quot;</span>)</span>
+<span id="cb81-4"><a href="#cb81-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Loading required package: lpSolve</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a><span class="co"># 加载 lpSolve 包</span></span>
+<span id="cb83-2"><a href="#cb83-2" tabindex="-1"></a><span class="fu">library</span>(lpSolve)</span>
+<span id="cb83-3"><a href="#cb83-3" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="#cb83-4" tabindex="-1"></a><span class="co"># 目标函数系数 (最小化 4x + 2y + 9z)</span></span>
+<span id="cb83-5"><a href="#cb83-5" tabindex="-1"></a>objective <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">9</span>)</span>
+<span id="cb83-6"><a href="#cb83-6" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="#cb83-7" tabindex="-1"></a><span class="co"># 约束条件的系数矩阵</span></span>
+<span id="cb83-8"><a href="#cb83-8" tabindex="-1"></a>constraints <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>,  <span class="co"># 2x + y + z</span></span>
+<span id="cb83-9"><a href="#cb83-9" tabindex="-1"></a>                        <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>), <span class="co"># x - y + 3z</span></span>
+<span id="cb83-10"><a href="#cb83-10" tabindex="-1"></a>                      <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb83-11"><a href="#cb83-11" tabindex="-1"></a></span>
+<span id="cb83-12"><a href="#cb83-12" tabindex="-1"></a><span class="co"># 约束条件右侧的值</span></span>
+<span id="cb83-13"><a href="#cb83-13" tabindex="-1"></a>rhs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb83-14"><a href="#cb83-14" tabindex="-1"></a></span>
+<span id="cb83-15"><a href="#cb83-15" tabindex="-1"></a><span class="co"># 约束条件方向</span></span>
+<span id="cb83-16"><a href="#cb83-16" tabindex="-1"></a>directions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</span>
+<span id="cb83-17"><a href="#cb83-17" tabindex="-1"></a></span>
+<span id="cb83-18"><a href="#cb83-18" tabindex="-1"></a><span class="co"># 求解线性规划问题</span></span>
+<span id="cb83-19"><a href="#cb83-19" tabindex="-1"></a>solution <span class="ot">&lt;-</span> <span class="fu">lp</span>(<span class="st">&quot;min&quot;</span>, objective, constraints, directions, rhs, <span class="at">compute.sens =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb83-20"><a href="#cb83-20" tabindex="-1"></a></span>
+<span id="cb83-21"><a href="#cb83-21" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb83-22"><a href="#cb83-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;最优解为：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 最优解为：</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a><span class="fu">print</span>(solution<span class="sc">$</span>solution)</span></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">目标函数的最小值为：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 目标函数的最小值为：</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a><span class="fu">print</span>(solution<span class="sc">$</span>objval)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">灵敏度分析结果：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 灵敏度分析结果：</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a><span class="fu">print</span>(solution<span class="sc">$</span>sens.coef.from)</span></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a><span class="fu">print</span>(solution<span class="sc">$</span>sens.coef.to)</span></code></pre></div>
+<pre><code>## [1] 1e+30 1e+30 1e+30</code></pre>
+<p>R advance 3.4.5</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a><span class="co">#第3题：使用 for 循环和 lapply() 拟合线性模型</span></span>
+<span id="cb97-2"><a href="#cb97-2" tabindex="-1"></a><span class="co"># 定义公式列表</span></span>
+<span id="cb97-3"><a href="#cb97-3" tabindex="-1"></a>formulas <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb97-4"><a href="#cb97-4" tabindex="-1"></a>  mpg <span class="sc">~</span> disp,</span>
+<span id="cb97-5"><a href="#cb97-5" tabindex="-1"></a>  mpg <span class="sc">~</span> <span class="fu">I</span>(<span class="dv">1</span> <span class="sc">/</span> disp),</span>
+<span id="cb97-6"><a href="#cb97-6" tabindex="-1"></a>  mpg <span class="sc">~</span> disp <span class="sc">+</span> wt,</span>
+<span id="cb97-7"><a href="#cb97-7" tabindex="-1"></a>  mpg <span class="sc">~</span> <span class="fu">I</span>(<span class="dv">1</span> <span class="sc">/</span> disp) <span class="sc">+</span> wt</span>
+<span id="cb97-8"><a href="#cb97-8" tabindex="-1"></a>)</span>
+<span id="cb97-9"><a href="#cb97-9" tabindex="-1"></a></span>
+<span id="cb97-10"><a href="#cb97-10" tabindex="-1"></a><span class="co"># 使用 for 循环拟合模型</span></span>
+<span id="cb97-11"><a href="#cb97-11" tabindex="-1"></a>models_for <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb97-12"><a href="#cb97-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(formulas)) {</span>
+<span id="cb97-13"><a href="#cb97-13" tabindex="-1"></a>  models_for[[i]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(formulas[[i]], <span class="at">data =</span> mtcars)</span>
+<span id="cb97-14"><a href="#cb97-14" tabindex="-1"></a>}</span>
+<span id="cb97-15"><a href="#cb97-15" tabindex="-1"></a></span>
+<span id="cb97-16"><a href="#cb97-16" tabindex="-1"></a><span class="co"># 使用 lapply 拟合模型</span></span>
+<span id="cb97-17"><a href="#cb97-17" tabindex="-1"></a>models_lapply <span class="ot">&lt;-</span> <span class="fu">lapply</span>(formulas, <span class="cf">function</span>(f) <span class="fu">lm</span>(f, <span class="at">data =</span> mtcars))</span>
+<span id="cb97-18"><a href="#cb97-18" tabindex="-1"></a></span>
+<span id="cb97-19"><a href="#cb97-19" tabindex="-1"></a><span class="co">#第4题：对bootstrap replicates拟合模型</span></span>
+<span id="cb97-20"><a href="#cb97-20" tabindex="-1"></a><span class="co"># 创建 bootstrap 样本</span></span>
+<span id="cb97-21"><a href="#cb97-21" tabindex="-1"></a>bootstraps <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb97-22"><a href="#cb97-22" tabindex="-1"></a>  rows <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mtcars), <span class="at">size =</span> <span class="fu">nrow</span>(mtcars), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb97-23"><a href="#cb97-23" tabindex="-1"></a>  mtcars[rows, ]</span>
+<span id="cb97-24"><a href="#cb97-24" tabindex="-1"></a>})</span>
+<span id="cb97-25"><a href="#cb97-25" tabindex="-1"></a></span>
+<span id="cb97-26"><a href="#cb97-26" tabindex="-1"></a><span class="co"># 使用 for 循环拟合 mpg ~ disp 的模型</span></span>
+<span id="cb97-27"><a href="#cb97-27" tabindex="-1"></a>models_boot_for <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb97-28"><a href="#cb97-28" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(bootstraps)) {</span>
+<span id="cb97-29"><a href="#cb97-29" tabindex="-1"></a>  models_boot_for[[i]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> disp, <span class="at">data =</span> bootstraps[[i]])</span>
+<span id="cb97-30"><a href="#cb97-30" tabindex="-1"></a>}</span>
+<span id="cb97-31"><a href="#cb97-31" tabindex="-1"></a></span>
+<span id="cb97-32"><a href="#cb97-32" tabindex="-1"></a><span class="co"># 使用 lapply 拟合 mpg ~ disp 的模型（不使用匿名函数）</span></span>
+<span id="cb97-33"><a href="#cb97-33" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb97-34"><a href="#cb97-34" tabindex="-1"></a>  <span class="fu">lm</span>(mpg <span class="sc">~</span> disp, <span class="at">data =</span> data)</span>
+<span id="cb97-35"><a href="#cb97-35" tabindex="-1"></a>}</span>
+<span id="cb97-36"><a href="#cb97-36" tabindex="-1"></a>models_boot_lapply <span class="ot">&lt;-</span> <span class="fu">lapply</span>(bootstraps, fit_model)</span>
+<span id="cb97-37"><a href="#cb97-37" tabindex="-1"></a></span>
+<span id="cb97-38"><a href="#cb97-38" tabindex="-1"></a><span class="co">#第5题：提取每个模型的r方值</span></span>
+<span id="cb97-39"><a href="#cb97-39" tabindex="-1"></a><span class="co"># 定义提取 R^2 的函数</span></span>
+<span id="cb97-40"><a href="#cb97-40" tabindex="-1"></a>rsq <span class="ot">&lt;-</span> <span class="cf">function</span>(mod) <span class="fu">summary</span>(mod)<span class="sc">$</span>r.squared</span>
+<span id="cb97-41"><a href="#cb97-41" tabindex="-1"></a></span>
+<span id="cb97-42"><a href="#cb97-42" tabindex="-1"></a><span class="co"># 提取第3题中所有模型的 R^2</span></span>
+<span id="cb97-43"><a href="#cb97-43" tabindex="-1"></a>r2_for <span class="ot">&lt;-</span> <span class="fu">sapply</span>(models_for, rsq)</span>
+<span id="cb97-44"><a href="#cb97-44" tabindex="-1"></a>r2_lapply <span class="ot">&lt;-</span> <span class="fu">sapply</span>(models_lapply, rsq)</span>
+<span id="cb97-45"><a href="#cb97-45" tabindex="-1"></a></span>
+<span id="cb97-46"><a href="#cb97-46" tabindex="-1"></a><span class="co"># 提取第4题中 bootstrap 模型的 R^2</span></span>
+<span id="cb97-47"><a href="#cb97-47" tabindex="-1"></a>r2_boot_for <span class="ot">&lt;-</span> <span class="fu">sapply</span>(models_boot_for, rsq)</span>
+<span id="cb97-48"><a href="#cb97-48" tabindex="-1"></a>r2_boot_lapply <span class="ot">&lt;-</span> <span class="fu">sapply</span>(models_boot_lapply, rsq)</span>
+<span id="cb97-49"><a href="#cb97-49" tabindex="-1"></a></span>
+<span id="cb97-50"><a href="#cb97-50" tabindex="-1"></a><span class="co"># 输出 R^2 值</span></span>
+<span id="cb97-51"><a href="#cb97-51" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;第3题（for 循环）模型的 R^2：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 第3题（for 循环）模型的 R^2：</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a><span class="fu">print</span>(r2_for)</span></code></pre></div>
+<pre><code>## [1] 0.7183433 0.8596865 0.7809306 0.8838038</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">第3题（lapply）模型的 R^2：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 第3题（lapply）模型的 R^2：</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a><span class="fu">print</span>(r2_lapply)</span></code></pre></div>
+<pre><code>## [1] 0.7183433 0.8596865 0.7809306 0.8838038</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">第4题（bootstrap for 循环）模型的 R^2：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 第4题（bootstrap for 循环）模型的 R^2：</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a><span class="fu">print</span>(r2_boot_for)</span></code></pre></div>
+<pre><code>##  [1] 0.7447949 0.6676224 0.6795006 0.6885397 0.6671127 0.7531983 0.6343977
+##  [8] 0.7228417 0.6512306 0.7687586</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">第4题（bootstrap lapply）模型的 R^2：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 第4题（bootstrap lapply）模型的 R^2：</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="fu">print</span>(r2_boot_lapply)</span></code></pre></div>
+<pre><code>##  [1] 0.7447949 0.6676224 0.6795006 0.6885397 0.6671127 0.7531983 0.6343977
+##  [8] 0.7228417 0.6512306 0.7687586</code></pre>
+<p>213 第3题：使用 sapply() 提取 p 值</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="co"># 模拟 100 次 t 检验</span></span>
+<span id="cb113-2"><a href="#cb113-2" tabindex="-1"></a>trials <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
+<span id="cb113-3"><a href="#cb113-3" tabindex="-1"></a>  <span class="dv">100</span>,</span>
+<span id="cb113-4"><a href="#cb113-4" tabindex="-1"></a>  <span class="fu">t.test</span>(<span class="fu">rpois</span>(<span class="dv">10</span>, <span class="dv">10</span>), <span class="fu">rpois</span>(<span class="dv">7</span>, <span class="dv">10</span>)),</span>
+<span id="cb113-5"><a href="#cb113-5" tabindex="-1"></a>  <span class="at">simplify =</span> <span class="cn">FALSE</span></span>
+<span id="cb113-6"><a href="#cb113-6" tabindex="-1"></a>)</span>
+<span id="cb113-7"><a href="#cb113-7" tabindex="-1"></a></span>
+<span id="cb113-8"><a href="#cb113-8" tabindex="-1"></a><span class="co"># 使用匿名函数提取每次试验的 p 值</span></span>
+<span id="cb113-9"><a href="#cb113-9" tabindex="-1"></a>p_values_anonymous <span class="ot">&lt;-</span> <span class="fu">sapply</span>(trials, <span class="cf">function</span>(x) x<span class="sc">$</span>p.value)</span>
+<span id="cb113-10"><a href="#cb113-10" tabindex="-1"></a></span>
+<span id="cb113-11"><a href="#cb113-11" tabindex="-1"></a><span class="co"># 挑战：直接使用 [[ 提取 p 值</span></span>
+<span id="cb113-12"><a href="#cb113-12" tabindex="-1"></a>p_values_direct <span class="ot">&lt;-</span> <span class="fu">sapply</span>(trials, <span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;p.value&quot;</span>)</span>
+<span id="cb113-13"><a href="#cb113-13" tabindex="-1"></a></span>
+<span id="cb113-14"><a href="#cb113-14" tabindex="-1"></a><span class="co"># 输出 p 值</span></span>
+<span id="cb113-15"><a href="#cb113-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;使用匿名函数提取的 p 值：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 使用匿名函数提取的 p 值：</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a><span class="fu">print</span>(p_values_anonymous)</span></code></pre></div>
+<pre><code>##   [1] 0.72462576 0.62861656 0.55652992 0.31212747 0.27448327 0.04403686
+##   [7] 0.09591639 0.90481557 0.03894075 0.36169695 0.96543264 0.62925628
+##  [13] 0.37847214 0.24874186 0.89725111 0.78746112 0.84564679 0.82126926
+##  [19] 0.06497750 0.02611278 0.13117828 0.51438067 0.60803056 0.96855813
+##  [25] 0.50187765 0.66169882 0.36884852 0.62094846 0.98543495 0.55427494
+##  [31] 0.15865903 0.79678739 0.66405336 0.03650673 0.54037312 0.64755996
+##  [37] 0.84123725 0.66503012 0.43368567 0.05948576 0.74032826 0.01669172
+##  [43] 0.77334444 0.43661375 0.79313738 0.97706328 0.09841506 0.03265263
+##  [49] 0.89670388 0.35374053 0.28984912 0.39703864 0.53000969 0.48386004
+##  [55] 0.56947426 0.33544734 0.76823591 0.77852566 0.66099796 0.96622932
+##  [61] 0.01479997 0.17886435 0.55155616 0.19953783 0.82707339 0.80192363
+##  [67] 0.05240038 0.90875333 0.37342930 0.35125590 0.11986500 0.62643017
+##  [73] 0.92301118 0.80551771 0.94178891 0.55815522 0.36377714 0.04016175
+##  [79] 0.63146562 0.70526554 0.85585743 0.69684525 0.58475703 0.16405855
+##  [85] 0.56894808 0.58443139 0.41826952 0.96241093 0.37935186 0.67645494
+##  [91] 0.07814094 0.18311233 0.65401149 0.99439528 0.61090536 0.16809329
+##  [97] 0.47950726 0.47994395 0.65863075 0.69953302</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">直接使用 [[ 提取的 p 值：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 直接使用 [[ 提取的 p 值：</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a><span class="fu">print</span>(p_values_direct)</span></code></pre></div>
+<pre><code>##   [1] 0.72462576 0.62861656 0.55652992 0.31212747 0.27448327 0.04403686
+##   [7] 0.09591639 0.90481557 0.03894075 0.36169695 0.96543264 0.62925628
+##  [13] 0.37847214 0.24874186 0.89725111 0.78746112 0.84564679 0.82126926
+##  [19] 0.06497750 0.02611278 0.13117828 0.51438067 0.60803056 0.96855813
+##  [25] 0.50187765 0.66169882 0.36884852 0.62094846 0.98543495 0.55427494
+##  [31] 0.15865903 0.79678739 0.66405336 0.03650673 0.54037312 0.64755996
+##  [37] 0.84123725 0.66503012 0.43368567 0.05948576 0.74032826 0.01669172
+##  [43] 0.77334444 0.43661375 0.79313738 0.97706328 0.09841506 0.03265263
+##  [49] 0.89670388 0.35374053 0.28984912 0.39703864 0.53000969 0.48386004
+##  [55] 0.56947426 0.33544734 0.76823591 0.77852566 0.66099796 0.96622932
+##  [61] 0.01479997 0.17886435 0.55155616 0.19953783 0.82707339 0.80192363
+##  [67] 0.05240038 0.90875333 0.37342930 0.35125590 0.11986500 0.62643017
+##  [73] 0.92301118 0.80551771 0.94178891 0.55815522 0.36377714 0.04016175
+##  [79] 0.63146562 0.70526554 0.85585743 0.69684525 0.58475703 0.16405855
+##  [85] 0.56894808 0.58443139 0.41826952 0.96241093 0.37935186 0.67645494
+##  [91] 0.07814094 0.18311233 0.65401149 0.99439528 0.61090536 0.16809329
+##  [97] 0.47950726 0.47994395 0.65863075 0.69953302</code></pre>
+<p>213 第6题：实现一个基于 Map() 和 vapply() 的并行迭代函数</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" tabindex="-1"></a><span class="co"># 定义并行迭代函数</span></span>
+<span id="cb121-2"><a href="#cb121-2" tabindex="-1"></a>parallel_apply <span class="ot">&lt;-</span> <span class="cf">function</span>(FUN, ..., <span class="at">output_type =</span> <span class="st">&quot;vector&quot;</span>) {</span>
+<span id="cb121-3"><a href="#cb121-3" tabindex="-1"></a>  <span class="co"># 使用 Map 并行迭代所有输入</span></span>
+<span id="cb121-4"><a href="#cb121-4" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">Map</span>(FUN, ...)</span>
+<span id="cb121-5"><a href="#cb121-5" tabindex="-1"></a>  </span>
+<span id="cb121-6"><a href="#cb121-6" tabindex="-1"></a>  <span class="co"># 根据输出类型存储结果</span></span>
+<span id="cb121-7"><a href="#cb121-7" tabindex="-1"></a>  <span class="cf">if</span> (output_type <span class="sc">==</span> <span class="st">&quot;vector&quot;</span>) {</span>
+<span id="cb121-8"><a href="#cb121-8" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">vapply</span>(results, identity, <span class="at">FUN.VALUE =</span> <span class="fu">integer</span>(<span class="dv">1</span>)))  <span class="co"># 确保返回值为整数</span></span>
+<span id="cb121-9"><a href="#cb121-9" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (output_type <span class="sc">==</span> <span class="st">&quot;matrix&quot;</span>) {</span>
+<span id="cb121-10"><a href="#cb121-10" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">do.call</span>(rbind, results))</span>
+<span id="cb121-11"><a href="#cb121-11" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb121-12"><a href="#cb121-12" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Unsupported output_type. Use &#39;vector&#39; or &#39;matrix&#39;.&quot;</span>)</span>
+<span id="cb121-13"><a href="#cb121-13" tabindex="-1"></a>  }</span>
+<span id="cb121-14"><a href="#cb121-14" tabindex="-1"></a>}</span>
+<span id="cb121-15"><a href="#cb121-15" tabindex="-1"></a></span>
+<span id="cb121-16"><a href="#cb121-16" tabindex="-1"></a><span class="co"># 示例测试</span></span>
+<span id="cb121-17"><a href="#cb121-17" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb121-18"><a href="#cb121-18" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb121-19"><a href="#cb121-19" tabindex="-1"></a></span>
+<span id="cb121-20"><a href="#cb121-20" tabindex="-1"></a>example_function <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) a <span class="sc">+</span> b</span>
+<span id="cb121-21"><a href="#cb121-21" tabindex="-1"></a></span>
+<span id="cb121-22"><a href="#cb121-22" tabindex="-1"></a><span class="co"># 并行迭代并输出为向量</span></span>
+<span id="cb121-23"><a href="#cb121-23" tabindex="-1"></a>vector_output <span class="ot">&lt;-</span> <span class="fu">parallel_apply</span>(example_function, x, y, <span class="at">output_type =</span> <span class="st">&quot;vector&quot;</span>)</span>
+<span id="cb121-24"><a href="#cb121-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;向量输出：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 向量输出：</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a><span class="fu">print</span>(vector_output)</span></code></pre></div>
+<pre><code>## [1]  7  9 11 13 15</code></pre>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a><span class="co"># 并行迭代并输出为矩阵</span></span>
+<span id="cb125-2"><a href="#cb125-2" tabindex="-1"></a>matrix_output <span class="ot">&lt;-</span> <span class="fu">parallel_apply</span>(example_function, x, y, <span class="at">output_type =</span> <span class="st">&quot;matrix&quot;</span>)</span>
+<span id="cb125-3"><a href="#cb125-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">矩阵输出：</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 矩阵输出：</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" tabindex="-1"></a><span class="fu">print</span>(matrix_output)</span></code></pre></div>
+<pre><code>##      [,1]
+## [1,]    7
+## [2,]    9
+## [3,]   11
+## [4,]   13
+## [5,]   15</code></pre>
+<p>365第4题：优化版的 chisq.test()</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" tabindex="-1"></a><span class="co"># 定义快速版 chisq.test，只计算卡方统计量</span></span>
+<span id="cb129-2"><a href="#cb129-2" tabindex="-1"></a>fast_chisq_test <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb129-3"><a href="#cb129-3" tabindex="-1"></a>  <span class="co"># 检查输入是否为数值向量且无缺失值</span></span>
+<span id="cb129-4"><a href="#cb129-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x) <span class="sc">||</span> <span class="sc">!</span><span class="fu">is.numeric</span>(y) <span class="sc">||</span> <span class="fu">any</span>(<span class="fu">is.na</span>(x)) <span class="sc">||</span> <span class="fu">any</span>(<span class="fu">is.na</span>(y))) {</span>
+<span id="cb129-5"><a href="#cb129-5" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Input must be two numeric vectors with no missing values.&quot;</span>)</span>
+<span id="cb129-6"><a href="#cb129-6" tabindex="-1"></a>  }</span>
+<span id="cb129-7"><a href="#cb129-7" tabindex="-1"></a>  </span>
+<span id="cb129-8"><a href="#cb129-8" tabindex="-1"></a>  <span class="co"># 生成列联表</span></span>
+<span id="cb129-9"><a href="#cb129-9" tabindex="-1"></a>  observed <span class="ot">&lt;-</span> <span class="fu">table</span>(x, y)</span>
+<span id="cb129-10"><a href="#cb129-10" tabindex="-1"></a>  </span>
+<span id="cb129-11"><a href="#cb129-11" tabindex="-1"></a>  <span class="co"># 计算期望值</span></span>
+<span id="cb129-12"><a href="#cb129-12" tabindex="-1"></a>  expected <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observed) <span class="sc">%o%</span> <span class="fu">colSums</span>(observed) <span class="sc">/</span> <span class="fu">sum</span>(observed)</span>
+<span id="cb129-13"><a href="#cb129-13" tabindex="-1"></a>  </span>
+<span id="cb129-14"><a href="#cb129-14" tabindex="-1"></a>  <span class="co"># 计算卡方统计量</span></span>
+<span id="cb129-15"><a href="#cb129-15" tabindex="-1"></a>  chisq_stat <span class="ot">&lt;-</span> <span class="fu">sum</span>((observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected)</span>
+<span id="cb129-16"><a href="#cb129-16" tabindex="-1"></a>  </span>
+<span id="cb129-17"><a href="#cb129-17" tabindex="-1"></a>  <span class="fu">return</span>(chisq_stat)</span>
+<span id="cb129-18"><a href="#cb129-18" tabindex="-1"></a>}</span>
+<span id="cb129-19"><a href="#cb129-19" tabindex="-1"></a></span>
+<span id="cb129-20"><a href="#cb129-20" tabindex="-1"></a><span class="co"># 测试快速版 chisq.test</span></span>
+<span id="cb129-21"><a href="#cb129-21" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb129-22"><a href="#cb129-22" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb129-23"><a href="#cb129-23" tabindex="-1"></a><span class="fu">fast_chisq_test</span>(x, y) <span class="co"># 返回卡方统计量</span></span></code></pre></div>
+<pre><code>## [1] 5.069444</code></pre>
+<p>365第5题：优化版的 table()</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" tabindex="-1"></a><span class="co"># 定义快速版 table</span></span>
+<span id="cb131-2"><a href="#cb131-2" tabindex="-1"></a>fast_table <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb131-3"><a href="#cb131-3" tabindex="-1"></a>  <span class="co"># 检查输入是否为整数向量且无缺失值</span></span>
+<span id="cb131-4"><a href="#cb131-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.integer</span>(x) <span class="sc">||</span> <span class="sc">!</span><span class="fu">is.integer</span>(y) <span class="sc">||</span> <span class="fu">any</span>(<span class="fu">is.na</span>(x)) <span class="sc">||</span> <span class="fu">any</span>(<span class="fu">is.na</span>(y))) {</span>
+<span id="cb131-5"><a href="#cb131-5" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Input must be two integer vectors with no missing values.&quot;</span>)</span>
+<span id="cb131-6"><a href="#cb131-6" tabindex="-1"></a>  }</span>
+<span id="cb131-7"><a href="#cb131-7" tabindex="-1"></a>  </span>
+<span id="cb131-8"><a href="#cb131-8" tabindex="-1"></a>  <span class="co"># 找到唯一值</span></span>
+<span id="cb131-9"><a href="#cb131-9" tabindex="-1"></a>  levels_x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(x))</span>
+<span id="cb131-10"><a href="#cb131-10" tabindex="-1"></a>  levels_y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(y))</span>
+<span id="cb131-11"><a href="#cb131-11" tabindex="-1"></a>  </span>
+<span id="cb131-12"><a href="#cb131-12" tabindex="-1"></a>  <span class="co"># 初始化结果矩阵</span></span>
+<span id="cb131-13"><a href="#cb131-13" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">length</span>(levels_x), <span class="at">ncol =</span> <span class="fu">length</span>(levels_y),</span>
+<span id="cb131-14"><a href="#cb131-14" tabindex="-1"></a>                   <span class="at">dimnames =</span> <span class="fu">list</span>(levels_x, levels_y))</span>
+<span id="cb131-15"><a href="#cb131-15" tabindex="-1"></a>  </span>
+<span id="cb131-16"><a href="#cb131-16" tabindex="-1"></a>  <span class="co"># 填充矩阵</span></span>
+<span id="cb131-17"><a href="#cb131-17" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x)) {</span>
+<span id="cb131-18"><a href="#cb131-18" tabindex="-1"></a>    result[<span class="fu">as.character</span>(x[i]), <span class="fu">as.character</span>(y[i])] <span class="ot">&lt;-</span> result[<span class="fu">as.character</span>(x[i]), <span class="fu">as.character</span>(y[i])] <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb131-19"><a href="#cb131-19" tabindex="-1"></a>  }</span>
+<span id="cb131-20"><a href="#cb131-20" tabindex="-1"></a>  </span>
+<span id="cb131-21"><a href="#cb131-21" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb131-22"><a href="#cb131-22" tabindex="-1"></a>}</span>
+<span id="cb131-23"><a href="#cb131-23" tabindex="-1"></a></span>
+<span id="cb131-24"><a href="#cb131-24" tabindex="-1"></a><span class="co"># 测试快速版 table</span></span>
+<span id="cb131-25"><a href="#cb131-25" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb131-26"><a href="#cb131-26" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb131-27"><a href="#cb131-27" tabindex="-1"></a><span class="fu">fast_table</span>(x, y) <span class="co"># 返回列联表</span></span></code></pre></div>
+<pre><code>##   1 2 3
+## 1 1 3 0
+## 2 1 1 1
+## 3 1 0 2</code></pre>
+</div>
+<div id="hw9" class="section level1">
+<h1>hw9</h1>
+</div>
+<div id="ex9.8" class="section level1">
+<h1>ex9.8</h1>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" tabindex="-1"></a><span class="co">#Rcpp和R函数实现Gibbs采样</span></span>
+<span id="cb133-2"><a href="#cb133-2" tabindex="-1"></a><span class="co"># 加载Rcpp库</span></span>
+<span id="cb133-3"><a href="#cb133-3" tabindex="-1"></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb133-4"><a href="#cb133-4" tabindex="-1"></a></span>
+<span id="cb133-5"><a href="#cb133-5" tabindex="-1"></a><span class="co"># 编写Rcpp函数</span></span>
+<span id="cb133-6"><a href="#cb133-6" tabindex="-1"></a><span class="fu">cppFunction</span>(<span class="st">&#39;</span></span>
+<span id="cb133-7"><a href="#cb133-7" tabindex="-1"></a><span class="st">NumericMatrix gibbsRcpp(int iterations, int n, double a, double b) {</span></span>
+<span id="cb133-8"><a href="#cb133-8" tabindex="-1"></a><span class="st">  NumericMatrix samples(iterations, 2);</span></span>
+<span id="cb133-9"><a href="#cb133-9" tabindex="-1"></a><span class="st">  samples(0, 0) = 0;  // 初始化 x</span></span>
+<span id="cb133-10"><a href="#cb133-10" tabindex="-1"></a><span class="st">  samples(0, 1) = 0.5; // 初始化 y</span></span>
+<span id="cb133-11"><a href="#cb133-11" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb133-12"><a href="#cb133-12" tabindex="-1"></a><span class="st">  for (int i = 1; i &lt; iterations; i++) {</span></span>
+<span id="cb133-13"><a href="#cb133-13" tabindex="-1"></a><span class="st">    // 获取上一轮的值</span></span>
+<span id="cb133-14"><a href="#cb133-14" tabindex="-1"></a><span class="st">    double y_prev = samples(i - 1, 1);</span></span>
+<span id="cb133-15"><a href="#cb133-15" tabindex="-1"></a><span class="st">    int x_prev = samples(i - 1, 0);</span></span>
+<span id="cb133-16"><a href="#cb133-16" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb133-17"><a href="#cb133-17" tabindex="-1"></a><span class="st">    // 更新x: Binomial(n, y_prev)</span></span>
+<span id="cb133-18"><a href="#cb133-18" tabindex="-1"></a><span class="st">    samples(i, 0) = R::rbinom(n, y_prev);</span></span>
+<span id="cb133-19"><a href="#cb133-19" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb133-20"><a href="#cb133-20" tabindex="-1"></a><span class="st">    // 更新y: Beta(x_prev + a, n - x_prev + b)</span></span>
+<span id="cb133-21"><a href="#cb133-21" tabindex="-1"></a><span class="st">    samples(i, 1) = R::rbeta(x_prev + a, n - x_prev + b);</span></span>
+<span id="cb133-22"><a href="#cb133-22" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb133-23"><a href="#cb133-23" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb133-24"><a href="#cb133-24" tabindex="-1"></a><span class="st">  return samples;</span></span>
+<span id="cb133-25"><a href="#cb133-25" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb133-26"><a href="#cb133-26" tabindex="-1"></a><span class="st">&#39;</span>)</span>
+<span id="cb133-27"><a href="#cb133-27" tabindex="-1"></a></span>
+<span id="cb133-28"><a href="#cb133-28" tabindex="-1"></a><span class="co"># Gibbs采样</span></span>
+<span id="cb133-29"><a href="#cb133-29" tabindex="-1"></a>gibbsR <span class="ot">&lt;-</span> <span class="cf">function</span>(iterations, n, a, b) {</span>
+<span id="cb133-30"><a href="#cb133-30" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(iterations)</span>
+<span id="cb133-31"><a href="#cb133-31" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(iterations)</span>
+<span id="cb133-32"><a href="#cb133-32" tabindex="-1"></a>  x[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb133-33"><a href="#cb133-33" tabindex="-1"></a>  y[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb133-34"><a href="#cb133-34" tabindex="-1"></a>  </span>
+<span id="cb133-35"><a href="#cb133-35" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>iterations) {</span>
+<span id="cb133-36"><a href="#cb133-36" tabindex="-1"></a>    y_prev <span class="ot">&lt;-</span> y[i <span class="sc">-</span> <span class="dv">1</span>]</span>
+<span id="cb133-37"><a href="#cb133-37" tabindex="-1"></a>    x[i] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> n, <span class="at">prob =</span> y_prev)</span>
+<span id="cb133-38"><a href="#cb133-38" tabindex="-1"></a>    x_prev <span class="ot">&lt;-</span> x[i]</span>
+<span id="cb133-39"><a href="#cb133-39" tabindex="-1"></a>    y[i] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, <span class="at">shape1 =</span> x_prev <span class="sc">+</span> a, <span class="at">shape2 =</span> n <span class="sc">-</span> x_prev <span class="sc">+</span> b)</span>
+<span id="cb133-40"><a href="#cb133-40" tabindex="-1"></a>  }</span>
+<span id="cb133-41"><a href="#cb133-41" tabindex="-1"></a>  </span>
+<span id="cb133-42"><a href="#cb133-42" tabindex="-1"></a>  <span class="fu">cbind</span>(x, y)</span>
+<span id="cb133-43"><a href="#cb133-43" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="比较生成的随机数" class="section level1">
+<h1>比较生成的随机数</h1>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb134-2"><a href="#cb134-2" tabindex="-1"></a>iterations <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb134-3"><a href="#cb134-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb134-4"><a href="#cb134-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb134-5"><a href="#cb134-5" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb134-6"><a href="#cb134-6" tabindex="-1"></a></span>
+<span id="cb134-7"><a href="#cb134-7" tabindex="-1"></a><span class="co"># 运行Rcpp和R函数</span></span>
+<span id="cb134-8"><a href="#cb134-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb134-9"><a href="#cb134-9" tabindex="-1"></a>samples_rcpp <span class="ot">&lt;-</span> <span class="fu">gibbsRcpp</span>(iterations, n, a, b)</span>
+<span id="cb134-10"><a href="#cb134-10" tabindex="-1"></a></span>
+<span id="cb134-11"><a href="#cb134-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb134-12"><a href="#cb134-12" tabindex="-1"></a>samples_r <span class="ot">&lt;-</span> <span class="fu">gibbsR</span>(iterations, n, a, b)</span>
+<span id="cb134-13"><a href="#cb134-13" tabindex="-1"></a></span>
+<span id="cb134-14"><a href="#cb134-14" tabindex="-1"></a><span class="co">#使用qqplot比较结果</span></span>
+<span id="cb134-15"><a href="#cb134-15" tabindex="-1"></a><span class="co"># 比较x分量</span></span>
+<span id="cb134-16"><a href="#cb134-16" tabindex="-1"></a><span class="fu">qqplot</span>(samples_r[, <span class="dv">1</span>], samples_rcpp[, <span class="dv">1</span>], <span class="at">main =</span> <span class="st">&quot;QQ-Plot for x&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;R&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Rcpp&quot;</span>)</span>
+<span id="cb134-17"><a href="#cb134-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" tabindex="-1"></a><span class="co"># 比较y分量</span></span>
+<span id="cb135-2"><a href="#cb135-2" tabindex="-1"></a><span class="fu">qqplot</span>(samples_r[, <span class="dv">2</span>], samples_rcpp[, <span class="dv">2</span>], <span class="at">main =</span> <span class="st">&quot;QQ-Plot for y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;R&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Rcpp&quot;</span>)</span>
+<span id="cb135-3"><a href="#cb135-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- -->
+# 比较计算时间</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb136-2"><a href="#cb136-2" tabindex="-1"></a></span>
+<span id="cb136-3"><a href="#cb136-3" tabindex="-1"></a><span class="co"># 比较时间</span></span>
+<span id="cb136-4"><a href="#cb136-4" tabindex="-1"></a>timing <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
+<span id="cb136-5"><a href="#cb136-5" tabindex="-1"></a>  <span class="at">R =</span> <span class="fu">gibbsR</span>(iterations, n, a, b),</span>
+<span id="cb136-6"><a href="#cb136-6" tabindex="-1"></a>  <span class="at">Rcpp =</span> <span class="fu">gibbsRcpp</span>(iterations, n, a, b),</span>
+<span id="cb136-7"><a href="#cb136-7" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb136-8"><a href="#cb136-8" tabindex="-1"></a>)</span>
+<span id="cb136-9"><a href="#cb136-9" tabindex="-1"></a><span class="fu">print</span>(timing)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##  expr     min        lq      mean    median        uq       max neval cld
+##     R 20.3409 20.615801 22.894991 22.285351 23.502900 31.262901    10  a 
+##  Rcpp  2.3865  2.408101  2.559711  2.425151  2.650001  3.287201    10   b</code></pre>
+</div>
+<div id="comment" class="section level1">
+<h1>comment</h1>
+<p>结果对比：</p>
+<p>使用qqplot观察到Rcpp和R函数生成的随机数在数值分布上高度一致，验证了Rcpp的正确性。
+时间性能：</p>
+<p>根据microbenchmark的结果，Rcpp的计算时间显著低于R函数，说明Rcpp在性能优化上具有明显优势。
+总结：</p>
+<p>Rcpp在处理大量迭代时表现出色，适合需要高效计算的场景。
+如果仅处理小规模问题，R函数更为便捷。</p>
 </div>
 
 
